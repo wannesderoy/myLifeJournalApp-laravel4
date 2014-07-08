@@ -1,0 +1,42 @@
+/* @font-face {
+    font-family: 'entypo';
+    src: url('../fonts/icons/entypo.eot');
+    src: url('../fonts/icons/entypo.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/icons/entypo.woff') format('woff'),
+         url('../fonts/icons/entypo.ttf') format('truetype'),
+         url('../fonts/icons/entypo.svg#entypo') format('svg');
+    font-weight: normal;
+    font-style: normal;
+} */
+@font-face {
+  font-family: 'codropsicons';
+  src: url("../fonts/icons/codropsicons.eot");
+  src: url("../fonts/icons/codropsicons.eot?#iefix") format("embedded-opentype"), url("../fonts/icons/codropsicons.woff") format("woff"), url("../fonts/icons/codropsicons.ttf") format("truetype"), url("../fonts/icons/codropsicons.svg#codropsicons") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+body {
+  background: #ccc;
+  width: 640px;
+  height: 1136px; }
+
+.login {
+  border-right: 3px solid #fff; }
+
+.register {
+  border-right: 3px solid #fff; }
+
+.body-img {
+  background-image: url("../images/app_background.jpg");
+  background-size: 640px 1136px;
+  background-repeat: no-repeat;
+  background-position: left; }
+
+.field span {
+  color: RED; }
+
+/* input[type=text] {
+    border: 1px dotted #000;
+    border-radius: 0;
+    font-size: 8px;
+    -webkit-appearance: none;
+} */
