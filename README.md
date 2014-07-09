@@ -15,6 +15,8 @@ How
 ===
 I started by designing my database and using artisan migration to create it. I made a model with the right relationships for every table which accessed all the data I needed to have in my views. All the logic for the daily questions and their related answers from a specific user is put into functions who I can call everywhere I want.
 
+A special feature was the users birthday, on his birthday a special question is asked. To make this work I only had to add 2 functions in de question and answer model. Yet again Laravels high developer usability has proven itself.
+
 In the controllers I write all my logic for the forms in the app. They contain checks, making of my views and writing to the database via my model Classes and functions.
 
 The app is build to be as lightweight and safe as possible for my knowledge, no useless code, pointless database queries or form without a token.

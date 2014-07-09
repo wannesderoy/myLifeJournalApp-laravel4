@@ -2,12 +2,10 @@
 	|
 <a href="#" id="dntrigger">trigger</a>
 <br>
-<p>{{ date('Y-m-d'); }}</p>
 
 <script type="text/javascript">
 	var d = moment().format('DDD');
-	d - 1;
-	console.log(d+' = is volgens google de juiste dag van het jaar.');
+	console.log(d);
 
 
 	var dnperm = document.getElementById('dnperm');

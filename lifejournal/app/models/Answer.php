@@ -6,6 +6,8 @@ Class Answer extends Eloquent {
 
 	protected $table = "answers";
 
+	
+
 	// DEFINE RELATIONSHIPS --------------------------------------------------
 	// each answer has 1 user
 	public function user() {
@@ -16,6 +18,14 @@ Class Answer extends Eloquent {
 		$d = date("z")+1;
 		$u = Auth::user()->id;
 		$answersRAW = $query->where('question_id', $d)->where('user_id', '=', $u)->get();
+		$answers = $answersRAW->each(function($answerx) {
+			$answerx->answer;
+		});
+		return $answers;
+	}
+	public function scopeBdayAnswer($query) {
+		$u = Auth::user()->id;
+		$answersRAW = $query->where('question_id', '999')->where('user_id', '=', $u)->get();
 		$answers = $answersRAW->each(function($answerx) {
 			$answerx->answer;
 		});

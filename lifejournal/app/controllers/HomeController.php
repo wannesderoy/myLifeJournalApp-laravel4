@@ -16,19 +16,34 @@ class HomeController extends BaseController {
 				->withErrors($v)
 				->withInput();
 		} else {
-			$y = date("Y");
-			$z = date("z");
-			$answer = Answer::create(array(
-					'answer'		=> Input::get('answer'),
-					'year'			=> $y,
-					'user_id'		=> Auth::user()->id,
-					'question_id'	=> $z
-				)
-			);
-			if($answer) {
-				return Redirect::route('home')->with('global', 'your answer has been saved');
+			if(Auth::user()->birthday == date('Y-m-d')) {
+				// on a users birthday ----------------------------------
+				$answer = Answer::create(array(
+						'answer'		=> Input::get('answer'),
+						'year'			=> date("Y"),
+						'user_id'		=> Auth::user()->id,
+						'question_id'	=> '999'
+					)
+				);
+				if($answer) {
+					return Redirect::route('home')->with('global', 'your answer has been saved');
+				} else {
+					return Redirect::route('home')->with('global', 'your answer has NOT been saved');
+				}
 			} else {
-				return Redirect::route('home')->with('global', 'your answer has NOT been saved');
+				// on a regular day ---------------------------------
+				$answer = Answer::create(array(
+						'answer'		=> Input::get('answer'),
+						'year'			=> date("Y"),
+						'user_id'		=> Auth::user()->id,
+						'question_id'	=> date("z")
+					)
+				);
+				if($answer) {
+					return Redirect::route('home')->with('global', 'your answer has been saved');
+				} else {
+					return Redirect::route('home')->with('global', 'your answer has NOT been saved');
+				}
 			}
 		}
 	}
