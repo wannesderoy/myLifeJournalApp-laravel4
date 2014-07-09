@@ -15,6 +15,9 @@ How
 ===
 I started by designing my database and using artisan migration to create it. I made a model with the right relationships for every table which accessed all the data I needed to have in my views. All the logic for the daily questions and their related answers from a specific user is put into functions who I can call everywhere I want.
 
-In the controllers I write all my logic for the forms in the app. They contain checks and writing to the database and makeing my views
+In the controllers I write all my logic for the forms in the app. They contain checks and writing to the database and making my views
 
 The app is build to be as lightweight and safe as possible for my knowledge, no useless code, pointless database queries or form without a token.
+
+
+This whole app is part assignment, part learning, part enjoyment.
