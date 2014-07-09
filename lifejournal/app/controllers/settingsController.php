@@ -7,6 +7,9 @@ class settingsController extends BaseController {
 	}
 
 	public function postSettings() {
+		if ( Session::token() !== Input::get( '_token' ) ) {
+			return Redirect::route('settings')->with('global', 'There was a token mismatch');		
+        }
 		$v = Validator::make(Input::all(), array(
 				'email' => 'email',
 				'profilepicture'=>'image'
@@ -89,9 +92,16 @@ class settingsController extends BaseController {
 					$filename = Str::random(30, 'numeric');	
 
 					$fullFile = $path . $filename.".".$extension;
-					$fileMove = Input::file('profilepicture')->move($path, $filename.".".$extension);
-					$u = User::find(Auth::user()->id);
-					$u->profile_pic = $fullFile;
+					$filenameAndExtension = $filename.".".$extension;
+					$fileMove = Input::file('profilepicture')->move($path, $filenameAndExtension);
+					if($fileMove->fails()) {
+						return Redirect::route('settings')->with('global', 'you profile picture could not be uploaded.');
+					} else {
+						//save profile picture in db
+						$u->profile_pic = $fullFile;
+					}
+				} else {
+					return Redirect::route('settings')->with('global', 'you profile has not been updated.');		
 				}
 			}
 			if($u->save()) {
