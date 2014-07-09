@@ -81,7 +81,7 @@ App::down(function()
 HTML::macro('date_mlj', function()
 {
 	$a = Auth::user()->birthday;
-    return '<input type="date name="birthday" value="'.$a.'"/>';
+    return '<input type="date" name="birthday" class="field birthday" value="'.$a.'"/>';
 });
 
 require app_path().'/filters.php';

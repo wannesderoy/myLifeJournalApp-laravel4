@@ -16,6 +16,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasMany('Answer'); // this matches the Eloquent model
 	}
 
+	// returns the users name in slug
+	public function scopeSlugName($scope) {
+		$a = Auth::user()->name;
+		return Str::slug($a, '_');
+	}
+
 	/**
 	 * The database table used by the model.
 	 *

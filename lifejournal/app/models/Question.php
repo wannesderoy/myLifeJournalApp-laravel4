@@ -13,7 +13,7 @@ Class Question extends Eloquent {
 	}
 	
 	public function scopeDayQuestion($query) {
-		$d = date("z");
+		$d = date("z")+1;
 		$q = $query->where('id',$d)->first()->question;
 		return $q;
 	}

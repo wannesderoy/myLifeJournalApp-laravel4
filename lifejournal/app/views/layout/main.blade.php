@@ -6,6 +6,7 @@
 	{{ HTML::style('css/gumby.css') }}
 	{{ HTML::style('css/style.css') }}
 	{{ HTML::script('js/jquery.js') }}
+	{{ HTML::script('js/moment.min.js') }}
 
 </head>
 <body>

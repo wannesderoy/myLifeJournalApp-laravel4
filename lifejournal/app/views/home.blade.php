@@ -3,7 +3,11 @@
 @section('content')
 	@if(Auth::check())
 		<div id="question">
-			<h1><span>"</span>{{ Question::dayQuestion() }}<span>"</span></h1>
+			@if(Auth::user()->birthday == date('Y-m-d'))
+				<h1><span>"</span>Your Birthday today. What did you do to celebrate?<span>"</span></h1>
+			@else
+				<h1><span>"</span>{{ Question::dayQuestion() }}<span>"</span></h1>
+			@endif
 		</div>
 
 		<div id="answers">
@@ -31,5 +35,5 @@
 	@else
 		@include('layout.start')
 	@endif
-
+	@include('layout.notifications')
 @stop
