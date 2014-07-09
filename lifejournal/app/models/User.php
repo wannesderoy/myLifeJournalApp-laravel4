@@ -7,7 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	protected $fillable = array('name', 'email', 'birthday', 'password');
+	protected $fillable = array('name', 'email', 'birthday', 'password', 'profile_pic', 'settings_all', 'settins_vibrate', 'settings_sound', 'settings_alertligth');
 
 	use UserTrait, RemindableTrait;
 
@@ -20,6 +20,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function scopeSlugName($scope) {
 		$a = Auth::user()->name;
 		return Str::slug($a, '_');
+	}
+
+	public function scopeProfilePic($query) {
 	}
 
 	/**

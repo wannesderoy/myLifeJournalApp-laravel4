@@ -41,8 +41,9 @@
 				{{ Form::token() }}
 			</form>
 		</div>
+		@include('layout.notifications')
 	@else
 		@include('layout.start')
 	@endif
-	@include('layout.notifications')
+	
 @stop

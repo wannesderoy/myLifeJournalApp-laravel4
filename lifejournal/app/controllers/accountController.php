@@ -71,10 +71,11 @@ Class accountController extends BaseController {
 			$password 	= Input::get('password');
 			// create the user in the DB
 			$user = User::create(array(
-					'name' 		=> $name,
-					'email' 	=> $email,
-					'birthday' 	=> $birthday,
-					'password' 	=> Hash::make($password)
+					'name' 			=> $name,
+					'email' 		=> $email,
+					'birthday' 		=> $birthday,
+					'password' 		=> Hash::make($password),
+					'profile_pic' 	=> '/profile_pictures/default/default_profile_picture.jpg'
 				)
 			);
 			// check if user is created correctly

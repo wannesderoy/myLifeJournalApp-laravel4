@@ -22,15 +22,4 @@ Class Question extends Eloquent {
 		$b = $query->where('id','999')->first()->question;
 		return $b;
 	}
-
-	// get the users birthday
-	public function scopeHisBirthday($scope) {
-		/*$b = Auth::user()->birthday;
-		// bidrthday format = 1992-08-11
-		$d = date('Y-m-d');
-		if($b == $d) {
-
-		}
-		return $z;*/
-	}
 }

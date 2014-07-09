@@ -1,3 +1,11 @@
+/* Variables */
+$r: #EC4342;
+$bg: #3D4247;
+$lg: #F2F2F2;
+$w: #FFFFFF;
+$b: #000000;
+/*/////////////////////*/
+
 /* @font-face {
     font-family: 'entypo';
     src: url('../fonts/icons/entypo.eot');
@@ -38,9 +46,42 @@ body {
 .field span {
 	color:RED;
 }
-/* input[type=text] {
-    border: 1px dotted #000;
-    border-radius: 0;
-    font-size: 8px;
-    -webkit-appearance: none;
-} */
+
+header {
+	nav { display:none; }
+	background-color:$bg;
+
+	#date {
+		width: 60%;
+		text-align: center;
+		margin-right: auto;
+		margin-left: auto;
+		h2 { color: $lg; }
+	}
+	#menu-trigger {
+		float:right;
+		div {
+			width: 50px;
+			height: 5px;
+			background-color:$w;
+			margin-right: 20px;
+		}
+		.twoo { margin:10px 0px 10px 0; }
+	}
+}
+.circular {
+	width: 50;
+	height: 50;
+	border-radius: 25px;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	}
+.circular img {
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+
+
+
+@import "cal";

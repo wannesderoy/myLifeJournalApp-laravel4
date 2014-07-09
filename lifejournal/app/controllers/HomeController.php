@@ -36,7 +36,7 @@ class HomeController extends BaseController {
 						'answer'		=> Input::get('answer'),
 						'year'			=> date("Y"),
 						'user_id'		=> Auth::user()->id,
-						'question_id'	=> date("z")
+						'question_id'	=> date("z")+1
 					)
 				);
 				if($answer) {
@@ -55,5 +55,8 @@ class HomeController extends BaseController {
 
 	public function getWebHome() {
 		return View::make('webhome');
+	}
+	public function getCal() {
+		return View::make('calendar');
 	}
 }

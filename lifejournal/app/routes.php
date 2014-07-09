@@ -29,6 +29,11 @@ Route::get('app/logout', array(
 Route::get('app/settings', array(
 		'as' 	=> 'settings',
 		'uses' 	=> 'settingsController@getSettings'
+));
+// calendar route maker
+Route::get('app/calendar', array(
+		'as' 	=> 'calendar',
+		'uses' 	=> 'HomeController@getCal'
 ));	
 
 /*

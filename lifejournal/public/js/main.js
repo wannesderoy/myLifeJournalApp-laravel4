@@ -1,5 +1,26 @@
 $(document).ready(function($) {
-	$('#btn-save').on('submit', function(){
+
+    ////// MOBILE MENU SHOW/HIDE
+    var trigger = false;
+    $('#menu-trigger').click(function() {
+        if(trigger == false) {
+            $('nav').css('display', 'block');
+            $('#mobile-menu-trigger').css('background-color', '#53bdae');
+            $('.bar').css('background-color', '#fff');
+            $('.text').css('color', '#fff');
+            trigger = true
+        } else if (trigger == true) {
+            $('nav').css('display', 'none');
+            $('#mobile-menu-trigger').css('background-color', '#fff');
+            $('.bar').css('background-color', '#535353');
+            $('.text').css('color', '#535353');
+            trigger = false;
+        }
+    });
+
+
+    ////// AJAX IN LARAVEL SHIZZLE
+        $('#btn-save').on('submit', function(){
         console.log("inside the first part shizzle");
         //.....
         //show some spinner etc to indicate operation in progress
