@@ -1,5 +1,20 @@
 /* Variables */
 /*/////////////////////*/
+@font-face {
+  font-family: allerta;
+  src: url(../fonts/Allerta-Regular.ttf); }
+h1 {
+  font-family: Times;
+  color: white;
+  font-style: italic;
+  font-size: 65px; }
+
+h2 {
+  font-family: allerta; }
+
+h3 {
+  font-family: Times; }
+
 /* @font-face {
     font-family: 'entypo';
     src: url('../fonts/icons/entypo.eot');
@@ -36,8 +51,31 @@ body {
 .field span {
   color: RED; }
 
+#question {
+  background-color: #ec4342;
+  padding: 20px;
+  text-align: center;
+  color: white; }
+  #question h1 {
+    border-bottom: 2px solid white; }
+  #question span {
+    font-size: 70px;
+    font-family: Georgia;
+    font-size: 200px;
+    float: right; }
+  #question .q_2 {
+    float: right; }
+  #question .q_1 {
+    margin-top: 80px;
+    float: left; }
+  #question #hyphen {
+    font-family: Times;
+    font-size: 80px; }
+
 header {
-  background-color: #3d4247; }
+  background-color: #3d4247;
+  width: 640px;
+  padding: 10px; }
   header nav {
     display: none; }
   header #date {
@@ -48,7 +86,8 @@ header {
     header #date h2 {
       color: #f2f2f2; }
   header #menu-trigger {
-    float: right; }
+    float: right;
+    margin-top: 17px; }
     header #menu-trigger div {
       width: 50px;
       height: 5px;

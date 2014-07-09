@@ -5,6 +5,16 @@ $lg: #F2F2F2;
 $w: #FFFFFF;
 $b: #000000;
 /*/////////////////////*/
+@font-face {
+    font-family: allerta;
+    src: url(../fonts/Allerta-Regular.ttf);
+}
+$h1: Times;
+$h2: allerta;
+$h3: Times;
+h1 { font-family:$h1; color:$w; font-style:italic; font-size:65px;}
+h2 { font-family:$h2; }
+h3 { font-family:$h3}
 
 /* @font-face {
     font-family: 'entypo';
@@ -16,6 +26,7 @@ $b: #000000;
     font-weight: normal;
     font-style: normal;
 } */
+
 @font-face {
 	font-family: 'codropsicons';
 	src:url('../fonts/icons/codropsicons.eot');
@@ -46,11 +57,38 @@ body {
 .field span {
 	color:RED;
 }
-
+#question {
+	background-color:$r;
+	padding:20px;
+	text-align:center;
+	color: $w;
+	h1 {
+		border-bottom: 2px solid $w;
+		
+	}
+	span {
+		font-size: 70px;
+		font-family: Georgia;
+		font-size: 200px;
+		float: right;
+	}
+	.q_2 {
+		float:right;
+	}
+	.q_1 {
+		margin-top:80px;
+		float:left;
+	}
+	#hyphen {
+		font-family:$h1;
+		font-size: 80px;
+	}
+}
 header {
 	nav { display:none; }
 	background-color:$bg;
-
+	width: 640px;
+	padding:10px;
 	#date {
 		width: 60%;
 		text-align: center;
@@ -60,6 +98,7 @@ header {
 	}
 	#menu-trigger {
 		float:right;
+		margin-top: 17px;
 		div {
 			width: 50px;
 			height: 5px;
