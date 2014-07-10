@@ -1,43 +1,31 @@
-<a href="#" id="dnperm">request permission</a>
-	|
 <a href="#" id="dntrigger">trigger</a>
 <br>
+{{ Answer::CheckTodayAnswer() }}
 
 <script type="text/javascript">
-	var d = moment().format('DDD');
-	console.log(d);
+/*
+setDaysTimeout(function() {
+     console.log('Four days gone');
+*/
 
 
-	var dnperm = document.getElementById('dnperm');
-	var dntrigger = document.getElementById('dntrigger');
+/*//*setTimeout(function() {
+	console.log("{{ Answer::CheckTodayAnswer() }}")
+},5000);*/
 
-	dnperm.addEventListener('click', function(e) {
-		e.preventDefault();
-
-		if(!window.Notification) {
-			alert('Sorry, not supported.');
-		} else {
-			Notification.requestPermission(function(p) {
-				if (p === 'denied') {
-					console.log('you have denied notifications.');
-				} else if (p === 'granted') {
-					console.log('you have granted notifications.')
-				}
-			});
-		}
-	});
+//////////////////////////--------------------------------------------------
+	var dntrigger = document.getElementById('dntrigger')
 
 	// Simulate an event
 	dntrigger.addEventListener('click', function(e) {
 		var notify;
-
 		e.preventDefault();
 
 		if (Notification.permission === 'default') {
 			console.log("please allow notifications.");
 		} else {
 			notify = new Notification('New Message from {{ Auth::user()->name }}', {
-				body: '{{ Question::dayQuestion() }}', 
+				body: 'There still is an unanswered question waiting to be answered for you!<br>"{{ Question::dayQuestion() }}"', 
 				icon: '{{ Auth::user()->profile_pic }}',
 				tag: '123456'
 			});
@@ -46,5 +34,26 @@
 			}
 		}	
 	});
+//////////////////////////---------------------------------------------------
 
+
+/*
+},1);
+*/
+/*
+// this function sets the timeout to one day ** production only, user for testing the normal setTimeout //
+function setDaysTimeout(callback,days) {
+    // 86400 seconds in a day
+    var msInDay = 86400*1000; 
+
+    var dayCount = 0;
+    var timer = setInterval(function() {
+        dayCount++;  // a day has passed
+
+        if(dayCount == days) {
+           clearInterval(timer);
+           callback.apply(this,[]);
+        }
+    },msInDay);
+}*/
 </script>

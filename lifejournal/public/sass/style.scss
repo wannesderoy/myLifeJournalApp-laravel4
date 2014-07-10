@@ -1,47 +1,11 @@
-/* Variables */
-$r: 	#EC4342;	// red
-$bg: 	#3D4247;	// blue gray ish
-$lg: 	#F2F2F2;	// light gray
-$w: 	#FFFFFF;	// white
-$b: 	#000000;	// black
+@import "base";
+@import "fonts";
 
-$h1: Times;
-$h2: allerta;
-$h3: Times;
 
-/*/////////////////////*/
-@font-face {
-    font-family: allerta;
-    src: url(../fonts/Allerta-Regular.ttf);
-}
-@font-face {
-    font-family: helvetica_lj;
-    src: url(../fonts/HelveticaNeue.dfont);
-}
-/* @font-face {
-    font-family: 'entypo';
-    src: url('../fonts/icons/entypo.eot');
-    src: url('../fonts/icons/entypo.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/icons/entypo.woff') format('woff'),
-         url('../fonts/icons/entypo.ttf') format('truetype'),
-         url('../fonts/icons/entypo.svg#entypo') format('svg');
-    font-weight: normal;
-    font-style: normal;
-} */
-
-@font-face {
-	font-family: 'codropsicons';
-	src:url('../fonts/icons/codropsicons.eot');
-	src:url('../fonts/icons/codropsicons.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/icons/codropsicons.woff') format('woff'),
-		url('../fonts/icons/codropsicons.ttf') format('truetype'),
-		url('../fonts/icons/codropsicons.svg#codropsicons') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
 h1 { font-family:$h1; color:$w; font-style:italic; font-size:65px;}
 h2 { font-family:$h2; }
-h3 { font-family:$h3}
+h3 { font-family:$h3 }
+h4 { font-family:$h2 }
 
 body {
 	font-family:allerta;
@@ -53,10 +17,11 @@ body {
 	background-color:$lg;
 }
 header {
-	z-index:999999;
+	z-index:999999999;
 	background-color:$bg;
 	width: 640px;
 	padding:10px;
+	border-bottom: 1px solid $dbg;
 	nav { 
 		position: absolute;
 		display:none; 
@@ -69,7 +34,8 @@ header {
 			li {
 				background-color:$bg;
 				padding:20px;
-				border-top:1px solid $lg;
+				border:1px solid $dbg;
+
 			}
 			span {
 				color:$lg;
@@ -123,8 +89,10 @@ header {
 	background-repeat:no-repeat;
 	background-position:left;
 }
-.field span {
-	color:RED;
+.field {
+	span {
+		color:RED;
+	}
 }
 #question {
 	background-image:url('../images/question_background.png');
@@ -144,17 +112,63 @@ header {
 #answers {
 	h3 {
 		font-style: italic;
+		font-size: 40px;
+	}
+	p {
+		font-size: 24px;
 	}
 	#new-answers {
-		padding:30px;
+		padding:15px 15px 15px 30px;
 	}
 	#old-answers {
 		li {
 			border-top:2px solid $bg;
-			padding:30px;
+			padding:15px 15px 15px 30px;
 		}
 	}
 }
+
+.settings {
+	li {
+		display: block;
+		height:50px;
+		padding-left:25px;
+	}
+	li:first-child {
+		border-bottom: 1px solid black;
+		padding-top:40px;
+		padding-bottom: 50px;
+	}
+	#userInformation {
+		border-bottom: 1px solid black;
+	}
+	.label {
+		color:$bg;
+		font-size: 25px;
+		float:left;
+	}
+	
+	.checkbox {
+	}
+	.field {
+		float:right;
+		margin-right: 60px;
+	}	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Life Journal App</title>
 	{{ HTML::style('css/gumby.css') }}
-	{{ HTML::style('css/style.css') }}
+	{{ HTML::style('stylesheets/style.css') }}
 	{{ HTML::script('js/jquery.min.js') }}
 	{{ HTML::script('js/jquery-ui.min.js') }}
 	{{ HTML::script('js/moment.min.js') }}
@@ -18,7 +18,7 @@
 			border-radius: 150px;
 			-webkit-border-radius: 150px;
 			-moz-border-radius: 150px;
-			background: url({{ "/".Auth::user()->profile_pic }} );
+			background: url('{{ "/".Auth::user()->profile_pic }}');
 			background-size: 70px 70px;
 			background-repeat: no-repeat;
 		}

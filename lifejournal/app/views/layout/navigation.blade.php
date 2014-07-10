@@ -1,16 +1,19 @@
 <header>
 	 	<div style="float: left; width: 70px;">
 	 		<a href="{{ URL::route('home') }}">
-	 		<div id="profile_pic_header">
-			</div>
+	 			<div id="profile_pic_header">
+				</div>
 			</a>
 		</div>
-
+		
 	 	<div style="float: left; width: 460px;">
-	 		<div id="date">
-				<h2>{{ date('jS \of F') }}</h2>
-			</div>
+	 		<a href="{{ URL::route('home') }}">
+	 			<div id="date">
+					<h2>{{ date('jS \of F') }}</h2>
+				</div>
+			</a>
 		</div>
+		
 
 	 	<div style="float: right; width: 70px;">
 	 		<div id="menu">
