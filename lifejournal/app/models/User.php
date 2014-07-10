@@ -25,6 +25,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function scopeProfilePic($query) {
 	}
 
+	
+
 	/**
 	 * The database table used by the model.
 	 *

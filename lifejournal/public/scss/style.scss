@@ -9,6 +9,11 @@ $b: #000000;
     font-family: allerta;
     src: url(../fonts/Allerta-Regular.ttf);
 }
+@font-face {
+    font-family: helvetica_lj;
+    src: url(../fonts/HelveticaNeue.dfont);
+}
+
 $h1: Times;
 $h2: allerta;
 $h3: Times;
@@ -58,30 +63,38 @@ body {
 	color:RED;
 }
 #question {
-	background-color:$r;
+	background-image:url('../images/question_background.png');
+	background-size:100%;
+	background-repeat: no-repeat;
+	height:425px;
 	padding:20px;
 	text-align:center;
 	color: $w;
 	h1 {
-		border-bottom: 2px solid $w;
-		
+		margin-top: auto;
+		margin-bottom: auto;
 	}
 	span {
-		font-size: 70px;
-		font-family: Georgia;
+		font-family: Georgias;
+		font-style: bold;
 		font-size: 200px;
 		float: right;
 	}
 	.q_2 {
 		float:right;
+		margin-top: 200px;
 	}
 	.q_1 {
-		margin-top:80px;
+		margin-top:70px;
 		float:left;
 	}
-	#hyphen {
+	#hyphen_1, #hyphen_2 {
+		text-align: center;
 		font-family:$h1;
 		font-size: 80px;
+	}
+	#text {
+		margin-top: 60px;
 	}
 }
 header {

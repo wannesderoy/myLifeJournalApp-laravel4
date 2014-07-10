@@ -4,11 +4,10 @@
 	@if(Auth::check())
 		<div id="question">
 			@if(Auth::user()->birthday == date('Y-m-d'))
-				<span class="q_1">"</span><h1>{{ Question::BdayQuestion() }}</h1><span class="q_2">"</span>
+				<div id="text"><h1>{{ Question::BdayQuestion() }}</h1></div>
 			@else
-				<span class="q_1">"</span><h1>{{ Question::dayQuestion() }}</h1><span class="q_2">"</span>
+				<div id="text"><h1>{{ Question::dayQuestion() }}</h1></div>
 			@endif
-			<p id="hyphen">~</p>
 		</div>
 
 		<div id="answers">

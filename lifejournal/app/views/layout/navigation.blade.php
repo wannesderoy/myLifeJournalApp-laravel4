@@ -1,19 +1,16 @@
 <header>
-
-
-
-	 	<div style="float: left; width: 100px;">
+	 	<div style="float: left; width: 70px;">
 	 		<div id="profile_pic_header">
 			</div>
 		</div>
 
-	 	<div style="float: left; width: 400px;">
+	 	<div style="float: left; width: 460px;">
 	 		<div id="date">
 				<h2>{{ date('jS \of F') }}</h2>
 			</div>
 		</div>
 
-	 	<div style="float: left; width: 100px;">
+	 	<div style="float: right; width: 70px;">
 	 		<div id="menu">
 				<div id="menu-trigger">
 					<div class="div one"></div>
