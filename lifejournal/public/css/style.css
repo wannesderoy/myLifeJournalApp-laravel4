@@ -6,18 +6,6 @@
 @font-face {
   font-family: helvetica_lj;
   src: url(../fonts/HelveticaNeue.dfont); }
-h1 {
-  font-family: Times;
-  color: white;
-  font-style: italic;
-  font-size: 65px; }
-
-h2 {
-  font-family: allerta; }
-
-h3 {
-  font-family: Times; }
-
 /* @font-face {
     font-family: 'entypo';
     src: url('../fonts/icons/entypo.eot');
@@ -34,10 +22,79 @@ h3 {
   src: url("../fonts/icons/codropsicons.eot?#iefix") format("embedded-opentype"), url("../fonts/icons/codropsicons.woff") format("woff"), url("../fonts/icons/codropsicons.ttf") format("truetype"), url("../fonts/icons/codropsicons.svg#codropsicons") format("svg");
   font-weight: normal;
   font-style: normal; }
+h1 {
+  font-family: Times;
+  color: white;
+  font-style: italic;
+  font-size: 65px; }
+
+h2 {
+  font-family: allerta; }
+
+h3 {
+  font-family: Times; }
+
 body {
+  font-family: allerta;
   background: #ccc;
   width: 640px;
   height: 1136px; }
+
+#wrapper {
+  background-color: #f2f2f2; }
+
+header {
+  z-index: 999999;
+  background-color: #3d4247;
+  width: 640px;
+  padding: 10px; }
+  header nav {
+    position: absolute;
+    display: none;
+    right: 0px;
+    margin-top: 52px; }
+    header nav ul {
+      margin-top: 28px;
+      float: left;
+      width: 420px; }
+      header nav ul li {
+        background-color: #3d4247;
+        padding: 20px;
+        border-top: 1px solid #f2f2f2; }
+      header nav ul span {
+        color: #f2f2f2;
+        font-size: 35px;
+        float: right;
+        margin-top: 30px;
+        padding-right: 30px; }
+  header #date {
+    width: 60%;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto; }
+    header #date h2 {
+      color: #f2f2f2; }
+  header #menu-trigger {
+    float: right;
+    margin-top: 17px; }
+    header #menu-trigger div {
+      width: 50px;
+      height: 5px;
+      background-color: white;
+      margin-right: 20px; }
+    header #menu-trigger .twoo {
+      margin: 10px 0px 10px 0; }
+
+.circular {
+  width: 50;
+  height: 50;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px; }
+
+.circular img {
+  opacity: 0;
+  filter: alpha(opacity=0); }
 
 .login {
   border-right: 3px solid #fff; }
@@ -83,40 +140,13 @@ body {
   #question #text {
     margin-top: 60px; }
 
-header {
-  background-color: #3d4247;
-  width: 640px;
-  padding: 10px; }
-  header nav {
-    display: none; }
-  header #date {
-    width: 60%;
-    text-align: center;
-    margin-right: auto;
-    margin-left: auto; }
-    header #date h2 {
-      color: #f2f2f2; }
-  header #menu-trigger {
-    float: right;
-    margin-top: 17px; }
-    header #menu-trigger div {
-      width: 50px;
-      height: 5px;
-      background-color: white;
-      margin-right: 20px; }
-    header #menu-trigger .twoo {
-      margin: 10px 0px 10px 0; }
-
-.circular {
-  width: 50;
-  height: 50;
-  border-radius: 25px;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px; }
-
-.circular img {
-  opacity: 0;
-  filter: alpha(opacity=0); }
+#answers h3 {
+  font-style: italic; }
+#answers #new-answers {
+  padding: 30px; }
+#answers #old-answers li {
+  border-top: 2px solid #3d4247;
+  padding: 30px; }
 
 .ui-datepicker,
 .ui-datepicker table,

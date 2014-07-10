@@ -13,7 +13,7 @@ Class Answer extends Eloquent {
 	public function scopeDayAnswer($query) {
 		$d = date("z")+1;
 		$u = Auth::user()->id;
-		$answersRAW = $query->where('question_id', $d)->where('user_id', '=', $u)->get();
+		$answersRAW = $query->where('question_id', $d)->where('user_id', '=', $u)->orderBy('year', 'desc')->get();
 		$answers = $answersRAW->each(function($answerx) {
 			$answerx->answer;
 		});
@@ -21,7 +21,7 @@ Class Answer extends Eloquent {
 	}
 	public function scopeBdayAnswer($query) {
 		$u = Auth::user()->id;
-		$answersRAW = $query->where('question_id', '999')->where('user_id', '=', $u)->get();
+		$answersRAW = $query->where('question_id', '999')->where('user_id', '=', $u)->orderBy('year', 'desc')->get();
 		$answers = $answersRAW->each(function($answerx) {
 			$answerx->answer;
 		});

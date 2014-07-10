@@ -86,7 +86,7 @@ class settingsController extends BaseController {
 				// profile picture
 				if (Input::hasFile('profilepicture')) {
 					$size = Input::file('profilepicture')->getSize();
-					if($size < 500000) {
+					if($size < 5000000000000) {
 						$extension = Input::file('profilepicture')->getClientOriginalExtension();
 						$path = "profile_pictures/" . User::SlugName()."/";
 						$filename = Str::lower(Str::random(20, 'numeric'));		
@@ -95,17 +95,15 @@ class settingsController extends BaseController {
 						$fileMove = Input::file('profilepicture')->move($path, $filenameAndExtension);
 						$u->profile_pic = $fullFile;
 
-						///////////
 							$image = new SimpleImage();
 							$image->load($fullFile);
 							$image->resizeToWidth(70);
 							$image->save($fullFile);
-						///////////
-
-						////////////
+								
 							$im = new ImageManipulator($fullFile);
 							$centreX = round($im->getWidth() / 2);
 							$centreY = round($im->getHeight() / 2);
+
 							$s = 70;
 							$x1 = $centreX - $s;
 							$y1 = $centreY - $s;
@@ -114,8 +112,10 @@ class settingsController extends BaseController {
 							$y2 = $centreY + $s;
 
 							$im->crop($x1, $y1, $x2, $y2);
-							$im->save($fullFile);
 
+							$im->save($fullFile);
+							echo "HELLO WORLD!";
+							
 						////////////						
 						
 					} else {

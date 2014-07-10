@@ -1,6 +1,7 @@
 @extends('layout.main')
 
 @section('content')
+<div id="wrapper">
 	<h1>Settings page</h1>
 	<div>
 		{{ Form::open(array('action' => 'settingsController@postSettings', 'files' => true)) }}
@@ -72,5 +73,6 @@
 	<div>
 		<!-- LOGOUT -->
 		<div><a href="{{ URL::route('logout') }}">Logout</a></div>
+	</div>
 	</div>
 @stop

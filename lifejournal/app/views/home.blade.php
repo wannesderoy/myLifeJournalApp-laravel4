@@ -1,16 +1,36 @@
 @extends('layout.main')
 
 @section('content')
-	@if(Auth::check())
+	<div id="wrapper">
+		@if(Auth::check())
+
 		<div id="question">
-			@if(Auth::user()->birthday == date('Y-m-d'))
-				<div id="text"><h1>{{ Question::BdayQuestion() }}</h1></div>
-			@else
-				<div id="text"><h1>{{ Question::dayQuestion() }}</h1></div>
-			@endif
+			<table>
+				<tbody>
+					<tr>
+						@if(Auth::user()->birthday == date('Y-m-d'))
+							<td><h1>{{ Question::BdayQuestion() }}</h1></td>
+						@else
+							<td><h1>{{ Question::dayQuestion() }}</h1></td>
+						@endif
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 		<div id="answers">
+			<div id="new-answers">
+				<h3>{{ date("Y") }}</h3>
+				<form action="{{ URL::route('home-post') }}" method="post">
+					<div>
+						<input type="text" name="answer" {{ (Input::old('answer')) ? ' value="'. Input::old('answer') .' " ' : '' }}>
+					</div>
+					<div>
+						<input type="submit" value="Save">
+					</div>
+					{{ Form::token() }}
+				</form>
+			</div>
 			<div id="old-answers">
 				<ul>
 					@if(Auth::user()->birthday == date('Y-m-d'))
@@ -30,20 +50,10 @@
 					@endif
 				</ul>
 			</div>
-			<form action="{{ URL::route('home-post') }}" method="post">
-				<div>
-					<label for="answer">answer:</label>
-					<input type="text" name="answer" {{ (Input::old('answer')) ? ' value="'. Input::old('answer') .' " ' : '' }}>
-				</div>
-				<div>
-					<input type="submit" value="Save">
-				</div>
-				{{ Form::token() }}
-			</form>
 		</div>
-		@include('layout.notifications')
+	</div>
+	@include('layout.notifications')
 	@else
 		@include('layout.start')
-	@endif
-	
+	@endif	
 @stop
