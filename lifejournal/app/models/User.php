@@ -15,18 +15,30 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function answer() {
 		return $this->hasMany('Answer'); // this matches the Eloquent model
 	}
-
 	// returns the users name in slug
 	public function scopeSlugName($scope) {
-		$a = Auth::user()->name;
-		return Str::slug($a, '_');
+		return Str::slug(Auth::user()->name, '_');
 	}
-
+	// return if notifications are on or off
+	public function scopeNotifications($query) {
+		if(Auth::user()->settings_all == 1) {
+			return 'true';
+		} else if(Auth::user()->settings_all == 0){
+			return 'false';
+		}
+	}
+	// return if notifications is on or of on settings page
+	public function scopeNotificationsCheckox($query) {
+		if(Auth::user()->settings_all == 1) {
+			return 'checked=checked';
+		} else {
+			return ' ';
+		}
+	}
+/*
 	public function scopeProfilePic($query) {
-	}
 
-	
-
+	}*/
 	/**
 	 * The database table used by the model.
 	 *

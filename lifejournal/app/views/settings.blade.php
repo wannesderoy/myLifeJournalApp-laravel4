@@ -1,40 +1,20 @@
 @extends('layout.main')
 
 @section('content')
+
+<div id="messages">
+	@if(Session::has('global'))
+		<li class="primary alert message">{{ Session::get('global') }}</li>
+	@endif
+</div>
+
 <div id="wrapper">
 	{{ Form::open(array('action' => 'settingsController@postSettings', 'files' => true, 'class' => 'settings form')) }}
 		<ul>
 			<!-- NOTIFICATIONS -->
 			<li id="notifications">
 				<label for="notifications" class="label">Notifications</label>			
-				<input class="checkbox field notifications" name="notifications" type="checkbox" value="0" id="notifications">						
-			</li>
-			<br>
-			<!-- VIBRATE -->
-			<li id="vibrate">
-				{{ Form::label('vibrate', 'Vibrate', array('class' => 'label')); }}
-				{{ Form::checkbox('vibrate', '1', true, array('class' => 'checkbox field vibrate')); }}
-					@if($errors->has('vibrate'))
-							{{ $errors->first('vibrate') }}
-					@endif
-			</li>
-			<br>
-			<!-- SOUND -->
-			<li id="sound">
-				{{ Form::label('sound', 'Sound', array('class' => 'label')); }}
-				{{ Form::checkbox('sound', '1', true, array('class' => 'checkbox field sound')); }}
-					@if($errors->has('sound'))
-							{{ $errors->first('sound') }}
-					@endif
-			</li>
-			<br>
-			<!-- LIGHT -->
-			<li id="light">
-				{{ Form::label('light', 'Light', array('class' => 'label')); }}
-				{{ Form::checkbox('light', 'light', true, array('class' => 'checkbox field light')); }}
-					@if($errors->has('light'))
-							{{ $errors->first('light') }}
-					@endif
+				<input class="checkbox field notifications css-checkbox" {{ User::NotificationsCheckox() }} id="notifications"  name="notifications" type="checkbox" value="1" id="notifications">						
 			</li>
 			<br>
 		<!-- /////////// USER INFORMATION \\\\\\\\\\ -->
@@ -107,8 +87,8 @@
 	</div>
 </div>
 <script>
-	var dnperm = document.getElementById('notifications');
-
+ 	// grant or resist permission for notifications via button
+	// var dnperm = document.getElementById('notifications');
 	dnperm.addEventListener('click', function(e) {
 		e.preventDefault();
 

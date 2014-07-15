@@ -78,14 +78,21 @@ App::down(function()
 |
 */
 
-// Wannes' custom macro for the date field that is not supported by laravel
+require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Custom Code for my Life Journal app
+|--------------------------------------------------------------------------
+*/
+
+// custom macro for the date field that is not supported by laravel
 HTML::macro('date_mlj', function()
 {
-	$a = Auth::user()->birthday;
-    return '<input type="date" name="birthday" class="field birthday" value="'.$a.'"/>';
+    return '<input type="date" name="birthday" class="field birthday" value="'.Auth::user()->birthday.'"/>';
 });
 
-// my custom image cropper
+// image handling class 1
 class ImageManipulator
 {
     /**
@@ -365,7 +372,7 @@ class ImageManipulator
     }
 }
 
-// image handling class
+// image handling class 2
 class SimpleImage {
    var $image;
    var $image_type;
@@ -447,4 +454,3 @@ class SimpleImage {
    }      
 }
 
-require app_path().'/filters.php';

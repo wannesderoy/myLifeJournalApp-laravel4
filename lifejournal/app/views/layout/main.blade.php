@@ -27,9 +27,6 @@
 
 </head>
 <body>
-	@if(Session::has('global'))
-		<p>{{ Session::get('global') }}</p>
-	@endif
 	@if(Auth::check())
 		@include('layout.navigation')
 	@endif

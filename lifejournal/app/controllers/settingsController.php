@@ -32,30 +32,6 @@ class settingsController extends BaseController {
 				} else {
 					$u->settings_all = 0;
 				}
-				if(Input::has('vibrate')) {
-					$b = Input::get('vibrate');
-					if ($b != Auth::user()->settings_vibrate) {
-						$u->settings_vibrate = $b;
-					}
-				} else {
-					$u->settings_vibrate = 0;
-				}
-				if(Input::has('sound')) {
-					$c = Input::get('sound');
-					if ($c != Auth::user()->settings_sound) {
-						$u->settings_sound = $c;
-					}
-				} else {
-					$u->settings_sound = 0;
-				}
-				if(Input::has('light')) {
-					$d = Input::get('light');
-					if($d != Auth::user()->settings_light){
-						$u->settings_alertlight = $d;
-					}
-				} else {
-					$u->settings_alertlight = 0;
-				}
 
 				// user information
 				if(Input::has('name')) {

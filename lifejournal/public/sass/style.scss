@@ -1,7 +1,6 @@
 @import "base";
 @import "fonts";
 
-
 h1 { font-family:$h1; color:$w; font-style:italic; font-size:65px;}
 h2 { font-family:$h2; }
 h3 { font-family:$h3 }
@@ -98,12 +97,12 @@ header {
 	background-image:url('../images/question_background.png');
 	background-size:100%;
 	background-repeat: no-repeat;
-	height:425px;
+	height:420px;
 	padding:20px;
 	text-align:center;
 	color: $w;
 	td {
-		height: 425px;
+		height: 420px;
 		width: 640px;
 		vertical-align: center;
 		text-align: center;
@@ -127,7 +126,6 @@ header {
 		}
 	}
 }
-
 .settings {
 	li {
 		display: block;
@@ -155,22 +153,34 @@ header {
 		margin-right: 60px;
 	}	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#messages{
+	padding:10px;
+}
+.danger, .alert, .message {
+	font-size:26px;
+	text-align:center;
+}
+input[type=checkbox].css-checkbox + label.css-label {
+	padding-left:31px;
+	height:26px; 
+	display:inline-block;
+	line-height:26px;
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	font-size:26px;
+	vertical-align:middle;
+	cursor:pointer;
+}
+input[type=checkbox].css-checkbox:checked + label.css-label {
+	background-position: 0 -26px;
+}
+label.css-label {
+	background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_b257b7d8dd1c0c2d68e34bb8ac17c035.png);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
 @import "cal";

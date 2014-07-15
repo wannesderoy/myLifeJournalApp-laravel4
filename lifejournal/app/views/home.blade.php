@@ -17,7 +17,13 @@
 				</tbody>
 			</table>
 		</div>
-
+		
+		@if(Session::has('global'))
+			<div id="messages">
+				<li class="primary alert message">{{ Session::get('global') }}</li>
+			</div>
+		@endif
+		
 		<div id="answers">
 			<div id="new-answers">
 				<h3>{{ date("Y") }}</h3>
