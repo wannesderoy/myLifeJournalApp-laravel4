@@ -1,11 +1,9 @@
 @import "base";
 @import "fonts";
-
 h1 { font-family:$h1; color:$w; font-style:italic; font-size:65px;}
 h2 { font-family:$h2; }
 h3 { font-family:$h3 }
 h4 { font-family:$h2 }
-
 body {
 	font-family:allerta;
 	background: #ccc;
@@ -13,7 +11,11 @@ body {
 	height:1136px;
 }
 #wrapper {
+	height:1136px;
 	background-color:$lg;
+	form {
+		padding:20px;
+	}
 }
 header {
 	z-index:999999999;
@@ -34,7 +36,6 @@ header {
 				background-color:$bg;
 				padding:20px;
 				border:1px solid $dbg;
-
 			}
 			span {
 				color:$lg;
@@ -64,6 +65,13 @@ header {
 		.twoo { margin:10px 0px 10px 0; }
 	}
 }
+#start-title {
+	border-bottom: 1px solid $dbg;
+	p {
+		font-size:40px;
+		padding:20px;
+	}
+}
 .circular {
 	width: 50;
 	height: 50;
@@ -82,11 +90,12 @@ header {
 .register {
 	border-right: 3px solid #fff;
 }
-.body-img {
-	background-image: url('../images/app_background.jpg');
+#wrapper-start {
+	background-image: url('../images/app_background.png');
 	background-size: 640px 1136px;
 	background-repeat:no-repeat;
 	background-position:left;
+	height:1136px;
 }
 .field {
 	span {
@@ -135,17 +144,21 @@ header {
 	li:first-child {
 		border-bottom: 1px solid black;
 		padding-top:40px;
-		padding-bottom: 50px;
+		padding-bottom: 60px;
 	}
 	#userInformation {
-		border-bottom: 1px solid black;
+		margin-bottom:80px;
+		p {
+			width: 80%;
+			padding: 20px 0px 20px 0px;
+			border-bottom: 1px solid black;
+		}
 	}
 	.label {
 		color:$bg;
 		font-size: 25px;
 		float:left;
 	}
-	
 	.checkbox {
 	}
 	.field {
@@ -153,12 +166,32 @@ header {
 		margin-right: 60px;
 	}	
 }
-#messages{
+#messages li {
 	padding:10px;
+	margin:0px;
 }
 .danger, .alert, .message {
 	font-size:26px;
 	text-align:center;
+}
+input {
+	border:none;
+	box-shadow: none;
+	background-image: none;
+	-webkit-backface-visibility: hidden;
+	z-index:1;
+}
+input[type="text"],input[type="password"],input[type="email"],input[type="date"] {
+	border-bottom:1px solid $dbg;
+	border-right:1px solid $dbg;
+	border-left:1px solid $dbg;
+	height:41px;
+	width:300px;
+	padding: 8px 5px;
+	text-indent: 6px;
+	background-color: $lg;
+	font-size:21px;
+	float:left;
 }
 input[type=checkbox].css-checkbox + label.css-label {
 	padding-left:31px;
@@ -167,20 +200,82 @@ input[type=checkbox].css-checkbox + label.css-label {
 	line-height:26px;
 	background-repeat:no-repeat;
 	background-position: 0 0;
-	font-size:26px;
+	font-size:30px;
 	vertical-align:middle;
 	cursor:pointer;
 }
-input[type=checkbox].css-checkbox:checked + label.css-label {
-	background-position: 0 -26px;
+#error_message_start {
+	background-color:$r;
+	padding:20px;
+	p {
+		color:$w;
+		font-size:1.6em;
+	}
 }
-label.css-label {
-	background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_b257b7d8dd1c0c2d68e34bb8ac17c035.png);
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+#field_error {
+	padding-top:30px;
+	span {
+		font-size:1.3em;
+	}
+}
+#answer-form {
+	.answer {
+		width:500px;
+	}
+	.submit {
+		font-size: 20px;
+		padding:10px;
+	}
+}
+#register-form, #login-form {
+	input {
+		width:480px;
+	}
+	div {
+		margin-bottom: 15px;
+
+	}
+	label {
+		font-size: 30px;
+		margin-bottom:10px;
+	}
+	input[type="submit"] {
+		width: 30%;
+		color:$w;
+	}
+}
+#privacy-links {
+	padding:0px 150px 0px 20px;
+	p {font-size:21px;}
+}
+#footer-content {
+	padding-top:1030px;
+	.btn {
+		margin-left:40px;
+		width: 40%;
+	}
+}
+.back {
+	position:relative;
+	border-top:1px solid $dbg;
+	height:100px;
+	width:640px;
+	p {
+		padding:20px;
+		font-size: 1.4em;
+	}
+}
+.legal {
+	margin-top:900px;
+}
+.text {
+	left:30px;
+	top:150px;
+	width:90%;
+	height: 800px;
+	position: absolute;
+	overflow:scroll;
+	text-align:left;
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(0%,rgba(0,0,0,1)), color-stop(90%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,0)));
 }
 @import "cal";

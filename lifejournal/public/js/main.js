@@ -17,7 +17,7 @@ $(document).ready(function($) {
             trigger = false;
         }
     });
-
+/*
 
     ////// AJAX IN LARAVEL SHIZZLE
         $('#btn-save').on('submit', function(){
@@ -48,4 +48,5 @@ $(document).ready(function($) {
         //prevent the form from actually submitting in browser
         return false;
 	});
+*/
 });

@@ -1,20 +1,18 @@
 @extends('layout.main')
 
 @section('content')
-
-<div id="messages">
-	@if(Session::has('global'))
-		<li class="primary alert message">{{ Session::get('global') }}</li>
-	@endif
-</div>
-
 <div id="wrapper">
+	<div id="messages">
+		@if(Session::has('global'))
+		<li class="primary alert message">{{ Session::get('global')}}</li>
+		@endif
+	</div>
 	{{ Form::open(array('action' => 'settingsController@postSettings', 'files' => true, 'class' => 'settings form')) }}
 		<ul>
 			<!-- NOTIFICATIONS -->
 			<li id="notifications">
 				<label for="notifications" class="label">Notifications</label>			
-				<input class="checkbox field notifications css-checkbox" {{ User::NotificationsCheckox() }} id="notifications"  name="notifications" type="checkbox" value="1" id="notifications">						
+				<input class="checkbox field notifications css-checkbox" {{ User::NotificationsCheckox() }} id="notifications"  name="notifications" type="checkbox" value="1">						
 			</li>
 			<br>
 		<!-- /////////// USER INFORMATION \\\\\\\\\\ -->
@@ -52,7 +50,7 @@
 			<!-- PASSWORD -->
 			<li id="password">
 				{{ Form::label('password', 'Password', array('class' => 'label')); }}
-				{{ Form::password('password', '', array('class' => 'field password')); }}
+				{{ Form::password('password', array('class' => 'field password')); }}
 					@if($errors->has('password'))
 							{{ $errors->first('password') }}
 					@endif
@@ -61,7 +59,7 @@
 			<!-- PROFILE PICTURE -->
 			<li id="profilepicture">
 				{{ Form::label('profilepicture', 'profile picture', array('class' => 'label')) }}
-				{{ Form::file('profilepicture','', array('class' => 'field profilepicture')); }}
+				{{ Form::file('profilepicture', array('class' => 'field profilepicture')); }}
 					@if($errors->has('profilepicture'))
 							{{ $errors->first('profilepicture') }}
 					@endif
@@ -88,7 +86,7 @@
 </div>
 <script>
  	// grant or resist permission for notifications via button
-	// var dnperm = document.getElementById('notifications');
+	var dnperm = document.getElementById('notifications');
 	dnperm.addEventListener('click', function(e) {
 		e.preventDefault();
 

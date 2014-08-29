@@ -71,10 +71,10 @@ class settingsController extends BaseController {
 						$fileMove = Input::file('profilepicture')->move($path, $filenameAndExtension);
 						$u->profile_pic = $fullFile;
 
-							$image = new SimpleImage();
-							$image->load($fullFile);
-							$image->resizeToWidth(70);
-							$image->save($fullFile);
+							// $image = new SimpleImage();
+							// $image->load($fullFile);
+							// $image->resizeToWidth(70);
+							// $image->save($fullFile);
 								
 							$im = new ImageManipulator($fullFile);
 							$centreX = round($im->getWidth() / 2);
@@ -90,10 +90,6 @@ class settingsController extends BaseController {
 							$im->crop($x1, $y1, $x2, $y2);
 
 							$im->save($fullFile);
-							echo "HELLO WORLD!";
-							
-						////////////						
-						
 					} else {
 						return Redirect::route('settings')->with('global', 'you profile picture is too big and has not been uploaded. Max allowed is 500kb -> yours = '.$size.'.');		
 					}

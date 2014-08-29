@@ -1,9 +1,9 @@
 @extends('layout.main')
 
 @section('content')
-	<div id="wrapper">
+	
 		@if(Auth::check())
-
+<div id="wrapper">
 		<div id="question">
 			<table>
 				<tbody>
@@ -18,21 +18,15 @@
 			</table>
 		</div>
 		
-		@if(Session::has('global'))
-			<div id="messages">
-				<li class="primary alert message">{{ Session::get('global') }}</li>
-			</div>
-		@endif
-		
 		<div id="answers">
 			<div id="new-answers">
 				<h3>{{ date("Y") }}</h3>
-				<form action="{{ URL::route('home-post') }}" method="post">
+				<form id="answer-form" action="{{ URL::route('home-post') }}" method="post">
 					<div>
-						<input type="text" name="answer" {{ (Input::old('answer')) ? ' value="'. Input::old('answer') .' " ' : '' }}>
+						<input class="answer" type="text" name="answer" {{ (Input::old('answer')) ? ' value="'. Input::old('answer') .' " ' : '' }}>
 					</div>
 					<div>
-						<input type="submit" value="Save">
+						<input class="submit" type="submit" value="Save">
 					</div>
 					{{ Form::token() }}
 				</form>

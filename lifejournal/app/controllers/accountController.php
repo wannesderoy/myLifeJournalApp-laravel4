@@ -8,27 +8,38 @@ Class accountController extends BaseController {
 	}
 
 	public function postLogin() {
+		// custom error messages for login
+		$messages = array(
+			'email.required' 	=> '<span>We need to know your e-mail address.</span>',
+			'email.email'		=> '<span>Your email is not an valid email adress</span>',
+    		'password.required' => '<span>We need to know your password.</span>'
+		);
 		$validator = Validator::make(Input::all(),
 				array(
 					'email' 	=> 'required|email', 
 					'password' 	=> 'required' 
-					)
+					), $messages
 				);
+
 		if($validator->fails() ) {
 			return Redirect::route('start-login') 
 					->withErrors($validator) 
 					->withInput(); 
 		} else { 
-				$auth = Auth::attempt(array( 
-						'email' 	=> Input::get('email'), 
-						'password' 	=> Input::get('password')
-						)
+			$email_login = Input::get('email');
+			$pass_login = Input::get('password');
+			
+			$auth = Auth::attempt(array( 
+					'email' 	=> $email_login,
+					'password' 	=> $pass_login
+					)
 			);
+
 			if ($auth) { 
 				return Redirect::route('home'); 
 			} else { 
 				return Redirect::route('start-login')
-						->with('global', 'email/password wrong, or account not activated.'); 
+						->with('global', 'email or password wrong.'); 
 			}
 		} 
 		return Redirect::route('start-login')
@@ -43,12 +54,12 @@ Class accountController extends BaseController {
 	}
 
 	public function postRegister() {
-		// custom error messages:
+		// custom error messages for register
 		$messages = array(
-			'name.required' 	=> '<span>your name seems a bit weird and short<span>',
-    		'email.required' 	=> '<span>We need to know your e-mail address!<span>',
-    		'birthday.required' => '<span>we need to know when to wish you a happy birthday!<span>',
-    		'password.required' => '<span>you need a secret knock or handshake<span>'
+			'name.required' 	=> '<span>Your name seems a bit weird and short.</span>',
+    		'email.required' 	=> '<span>We need to know your e-mail address.</span>',
+    		'birthday.required' => '<span>We need to know when to wish you a happy birthday!</span>',
+    		'password.required' => '<span>You need a secret knock or handshake.</span>'
 		);
 		// set the rules by which the form is validated
 		$validator = Validator::make(Input::all(), array(
@@ -68,14 +79,14 @@ Class accountController extends BaseController {
 			$name 		= Input::get('name');
 			$email 		= Input::get('email');
 			$birthday 	= Input::get('birthday');
-			$password 	= Input::get('password');
+			$password 	= Hash::make(Input::get('password'));
 			// create the user in the DB
 			$user = User::create(array(
 					'name' 			=> $name,
 					'email' 		=> $email,
 					'birthday' 		=> $birthday,
-					'password' 		=> Hash::make($password),
-					'profile_pic' 	=> '/profile_pictures/default/default_profile_picture.jpg'
+					'password' 		=> $password,
+					'profile_pic' 	=> 'profile_pictures/default/default_profile_picture.jpg'
 				)
 			);
 			// check if user is created correctly
@@ -87,20 +98,20 @@ Class accountController extends BaseController {
 					)
 				);
 				// check of user is logged in correctly
-				if ($auth) {
+				if ($auth) {					
+					// send email to user to confirm his account
+					Mail::send('emails.auth.start', array('name' => $name), function($message) use ($user) { 
+					$message->to($user->email, $user->name)->subject('Thanks for registering on Life Journal');
+					});
+
 					// after register and login direct user to home
 					return Redirect::route('home')
 						->with('global','your account has been created, we send an email to you email adress with info.');
 
-					// send email to user to confirm his account
-					Mail::send('emails.auth.start', array('name' => $name), function($message) use ($user) { 
-					$message->to($user->email, $user->name)->subject('Activate your account');
-					});
 				}
 			}
 		}
-	}
-		
+	}	
 	/**
 	 * Start of Legal routes
 	 */
