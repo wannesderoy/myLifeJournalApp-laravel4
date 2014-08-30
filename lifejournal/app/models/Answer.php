@@ -1,7 +1,7 @@
 <?php
 
 Class Answer extends Eloquent {
-	protected $fillable = array('answer', 'year', 'user_id', 'question_id');
+	protected $fillable = array('answer', 'year', 'user_id', 'question_id', 'image');
 	protected $table = "answers";
 
 	// DEFINE RELATIONSHIPS --------------------------------------------------
@@ -10,7 +10,7 @@ Class Answer extends Eloquent {
 		return $this->belongsToMany('User', 'user_id', 'question_id'); // this matches the Eloquent model
 	}
 
-	// get today's answer
+	// get today's answer (includes everything within answer Model)
 	public function scopeDayAnswer($query) {
 		$answersRAW = $query->where('question_id', date("z")+1)->where('user_id', '=', Auth::user()->id)->orderBy('year', 'desc')->get();
 		$answers = $answersRAW->each(function($answerx) {
@@ -18,6 +18,7 @@ Class Answer extends Eloquent {
 		});
 		return $answers;
 	}
+
 	// get the answers for the users birtyday -> has id 999
 	public function scopeBdayAnswer($query) {
 		$answersRAW = $query->where('question_id', '999')->where('user_id', '=', Auth::user()->id)->orderBy('year', 'desc')->get();
@@ -31,9 +32,9 @@ Class Answer extends Eloquent {
 	public function scopeCheckTodayAnswer($query) {
 		$check = $query->where('question_id', date("z")+1)->where('user_id', '=', Auth::user()->id)->where('year', date('Y'))->get();
 		if ($check->isEmpty()) { 
-			return 'true';
-		} else {
 			return 'false';
+		} else {
+			return 'true';
 		}
 	}
 }

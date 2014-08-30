@@ -140,6 +140,15 @@ header {
 			border-top:2px solid $bg;
 			padding:15px 15px 15px 30px;
 		}
+		#answer_text {
+			float:left;
+			width: 80%;
+		}
+		#answer_pic {
+			float:right;
+			width: 20%;
+			margin-top: 20px;
+		}
 	}
 }
 .settings {
@@ -222,6 +231,11 @@ input.error_field {
 	border-right:1px solid $r;
 	border-left:1px solid $r;
 }
+#take_photo {
+	input {
+		display:none;
+	}
+}
 #error_message_start {
 	background-color:$r;
 	padding:20px;
@@ -238,11 +252,14 @@ input.error_field {
 }
 #answer-form {
 	.answer {
-		width:500px;
+		width:460px;
 	}
 	.submit {
 		font-size: 20px;
 		padding:10px;
+	}
+	#take_photo label {
+		margin-left:500px;
 	}
 }
 #register-form, #login-form {

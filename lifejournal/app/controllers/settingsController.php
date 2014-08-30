@@ -11,8 +11,8 @@ class settingsController extends BaseController {
 			return Redirect::route('settings')->with('global', 'There was a token mismatch');		
         } else {
 			$v = Validator::make(Input::all(), array(
-					'email' => 'email',
-					'profilepicture'=>'image'
+					'email' 			=> 'email',
+					'profilepicture'	=> 'image'
 				));
 			if($v->fails()) {
 				return Redirect::route('settings')
@@ -63,24 +63,24 @@ class settingsController extends BaseController {
 				if (Input::hasFile('profilepicture')) {
 					$size = Input::file('profilepicture')->getSize();
 					if($size < 5000000000000) {
-						$extension = Input::file('profilepicture')->getClientOriginalExtension();
-						$path = "profile_pictures/" . User::SlugName()."/";
-						$filename = Str::lower(Str::random(20, 'numeric'));		
-						$filenameAndExtension = $filename . "." . $extension;	
-						$fullFile = $path . $filenameAndExtension;
-						$fileMove = Input::file('profilepicture')->move($path, $filenameAndExtension);
-						$u->profile_pic = $fullFile;
+						$extension 				= Input::file('profilepicture')->getClientOriginalExtension();
+						$path 					= "profile_pictures/" . User::SlugName()."/";
+						$filename 				= Str::lower(Str::random(20, 'numeric'));		
+						$filenameAndExtension 	= $filename . "." . $extension;	
+						$fullFile 				= $path . $filenameAndExtension;
+						$fileMove 				= Input::file('profilepicture')->move($path, $filenameAndExtension);
+						$u->profile_pic 		= $fullFile;
 
 							// $image = new SimpleImage();
 							// $image->load($fullFile);
 							// $image->resizeToWidth(70);
 							// $image->save($fullFile);
 								
-							$im = new ImageManipulator($fullFile);
-							$centreX = round($im->getWidth() / 2);
-							$centreY = round($im->getHeight() / 2);
+							$im 		= new ImageManipulator($fullFile);
+							$centreX 	= round($im->getWidth() / 2);
+							$centreY 	= round($im->getHeight() / 2);
 
-							$s = 100;
+							$s 	= 100;
 							$x1 = $centreX - $s;
 							$y1 = $centreY - $s;
 

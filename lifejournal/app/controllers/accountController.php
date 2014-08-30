@@ -9,41 +9,47 @@ Class accountController extends BaseController {
 
 	public function postLogin() {
 		// custom error messages for login
-		$messages = array(
+		$m = array(
 			'email.required' 	=> '<span>We need to know your e-mail address.</span>',
 			'email.email'		=> '<span>Your email is not an valid email adress.</span>',
     		'password.required' => '<span>We need to know your password.</span>'
 		);
-		$validator = Validator::make(Input::all(),
+		// Validate form input
+		$v = Validator::make(Input::all(),
 				array(
 					'email' 	=> 'required|email', 
 					'password' 	=> 'required' 
-					), $messages
+					), $m
 				);
 
-		if($validator->fails() ) {
+		// if validator fails
+		if($v->fails() ) {
+			// redirect to login with errors and unvalid input
 			return Redirect::route('start-login') 
 					->withErrors($validator) 
 					->withInput(); 
 		} else { 
+			// if input is valid, store in $var
 			$email_login = Input::get('email');
 			$pass_login = Input::get('password');
 			
+			// attempt to login with credentials
 			$auth = Auth::attempt(array( 
 					'email' 	=> $email_login,
 					'password' 	=> $pass_login
 					)
 			);
 
-			if ($auth) { 
+			if ($auth) {
+				// if user login is valid, redirect to app home 
 				return Redirect::route('home'); 
 			} else { 
+				// if user login is not valid, redirect to login with errors and input
 				return Redirect::route('start-login')
-						->with('global', 'Email or password wrong.'); 
+						->with('global', 'Email or password wrong.')
+						->withInput(); 
 			}
 		} 
-		return Redirect::route('start-login')
-				->with('global', 'There was a problem signing you in.'); 
 	}
 
 	/**
@@ -95,8 +101,10 @@ Class accountController extends BaseController {
 				Mail::send('emails.auth.start', array('name' => $name), function($message) use ($user) { 
 					$message->to($user->email, $user->name)->subject('Thanks for registering on Life Journal');
 				});
+
 				// log the user in imediately after creating his account
 				$auth = Auth::login($user);
+
 				// validate login
 				if($auth) {
 					// after register, mail and login direct user to home

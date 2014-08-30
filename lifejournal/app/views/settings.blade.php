@@ -4,7 +4,7 @@
 <div id="wrapper">
 	<div id="messages">
 		@if(Session::has('global'))
-		<li class="primary alert message">{{ Session::get('global')}}</li>
+			  <li class="primary alert message">{{ Session::get('global')}}</li>
 		@endif
 	</div>
 	{{ Form::open(array('action' => 'settingsController@postSettings', 'files' => true, 'class' => 'settings form')) }}
