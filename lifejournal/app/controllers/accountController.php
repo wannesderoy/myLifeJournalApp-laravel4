@@ -11,7 +11,7 @@ Class accountController extends BaseController {
 		// custom error messages for login
 		$messages = array(
 			'email.required' 	=> '<span>We need to know your e-mail address.</span>',
-			'email.email'		=> '<span>Your email is not an valid email adress</span>',
+			'email.email'		=> '<span>Your email is not an valid email adress.</span>',
     		'password.required' => '<span>We need to know your password.</span>'
 		);
 		$validator = Validator::make(Input::all(),
@@ -39,11 +39,11 @@ Class accountController extends BaseController {
 				return Redirect::route('home'); 
 			} else { 
 				return Redirect::route('start-login')
-						->with('global', 'email or password wrong.'); 
+						->with('global', 'Email or password wrong.'); 
 			}
 		} 
 		return Redirect::route('start-login')
-				->with('global', 'there was a problem signing you in.'); 
+				->with('global', 'There was a problem signing you in.'); 
 	}
 
 	/**
@@ -90,25 +90,27 @@ Class accountController extends BaseController {
 				)
 			);
 			// check if user is created correctly
-			if ($user) {
-				// log the user in imediately after creating his account
-				$auth = Auth::attempt(array( 
-						'name' 		=> $name, 
-						'password' 	=> $password
-					)
-				);
-				// check of user is logged in correctly
-				if ($auth) {					
-					// send email to user to confirm his account
-					Mail::send('emails.auth.start', array('name' => $name), function($message) use ($user) { 
+			if($user) {
+				// send email to user to confirm his account
+				Mail::send('emails.auth.start', array('name' => $name), function($message) use ($user) { 
 					$message->to($user->email, $user->name)->subject('Thanks for registering on Life Journal');
-					});
-
-					// after register and login direct user to home
+				});
+				// log the user in imediately after creating his account
+				$auth = Auth::login($user);
+				// validate login
+				if($auth) {
+					// after register, mail and login direct user to home
 					return Redirect::route('home')
 						->with('global','your account has been created, we send an email to you email adress with info.');
-
+				} else {
+					// if login fails
+					return Redirect::route('start-login')
+						->with('global','Something went wrong, please try to sign in.');
 				}
+			} else {
+				// if register fails
+				return Redirect::route('start-register')
+						->with('global','Failed to create your account, please try again.');
 			}
 		}
 	}	
