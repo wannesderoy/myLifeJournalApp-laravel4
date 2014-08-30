@@ -14,7 +14,6 @@ class HomeController extends BaseController {
 		);
 		if ($v->fails()) {
 			return Redirect::route('home')
-				->with('global', 'all fields are required.')
 				->withErrors($v)
 				->withInput();
 		} else {
@@ -73,7 +72,6 @@ class HomeController extends BaseController {
 							'year'			=> date("Y"),
 							'user_id'		=> Auth::user()->id,
 							'question_id'	=> date("z")+1,
-							'image'			=> $fullFile
 						)
 					);
 					if($answer) {

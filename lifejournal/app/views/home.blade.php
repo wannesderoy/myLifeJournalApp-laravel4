@@ -60,7 +60,9 @@
 									<h3>{{ $s->year }}</h3>
 									<p>{{ $s->answer }}</p>
 								</div>
-								<img id="answer_pic" src="{{ $s->image }}" alt="answer_pic" width="150">
+								@if(isset($s->image))
+									<img id="answer_pic" src="{{ $s->image }}" alt="answer_pic" width="150">
+								@endif
 							</li>
 						@endforeach
 					@endif
@@ -68,6 +70,15 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	$(document).ready(function() {
+		if($('#messages').length != 0) {
+			setTimeout(function() {
+				$('#messages').slideUp('slow');
+			}, 5000);
+		}
+	});
+	</script>
 	@include('layout.notifications')
 	@else
 		@include('layout.start')
