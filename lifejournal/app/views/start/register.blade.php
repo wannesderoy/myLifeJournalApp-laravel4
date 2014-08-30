@@ -20,49 +20,50 @@
 		<div class="field">
 			<!-- First and Lastname -->
 			<label for="name">First & Lastname</label>
-			<input type="text" name="name" {{ (Input::old('name')) ? ' value ="'. e(Input::old('name')).'"' : '' }}>
+			<input @if($errors->has('email')) class="error_field" @endif type="text" name="name" {{ (Input::old('name')) ? 'class="error_field" value ="'. e(Input::old('name')).'"' : '' }}>
 			<br>
-			<div id="field_error">
-				@if($errors->has('name'))
+			@if($errors->has('name'))
+				<div id="field_error">
 					{{ $errors->first('name') }}
-				@endif
-			</div>
+				</div>
+			@endif
 		</div>
 
 		<div class="field">
 			<!-- Email adress -->
 			<label for="email">E-mail adress</label>
-			<input type="text" name="email" {{ (Input::old('email')) ? ' value ="'. e(Input::old('email')).'"' : '' }}>
+			<input @if($errors->has('email')) class="error_field" @endif type="text" name="email" {{ (Input::old('email')) ? ' value ="'. e(Input::old('email')).'"' : '' }}>
 			<br>
-			<div id="field_error">
-				@if($errors->has('email'))
+			@if($errors->has('email'))
+				<div id="field_error">
 					{{ $errors->first('email') }}
-				@endif
-			</div>
+				</div>
+			@endif
 		</div>
 
 		<div class="field">
 			<!-- Birthday -->
 			<label for="birthday">Birthday</label>
-			<input type="date" name="birthday" {{ (Input::old('birthday')) ? ' value ="'. e(Input::old('birthday')).'"' : '' }}>
+			<input @if($errors->has('email')) class="error_field" @endif type="date" name="birthday" {{ (Input::old('birthday')) ? ' value ="'. e(Input::old('birthday')).'"' : '' }}>
 			<br>
-			<div id="field_error">
-				@if($errors->has('birthday'))
+			@if($errors->has('birthday'))
+				<div id="field_error">
 					{{ $errors->first('birthday') }}
-				@endif
-			</div>
+				</div>
+			@endif
+
 		</div>
 
 		<div class="field">
 			<!-- Password -->
 			<label for="password">Password</label>
-			<input type="password" name="password">
+			<input @if($errors->has('email')) class="error_field" @endif type="password" name="password">
 			<br>
-			<div id="field_error">
-				@if($errors->has('password'))
+			@if($errors->has('password'))
+				<div id="field_error">
 					{{ $errors->first('password') }}
-				@endif
-			</div>
+				</div>
+			@endif
 		</div>	
  	<input class="large danger btn" type="submit" value='Register'/>
 		{{ Form::token() }}

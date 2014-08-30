@@ -10,11 +10,23 @@
 	{{ Form::open(array('action' => 'settingsController@postSettings', 'files' => true, 'class' => 'settings form')) }}
 		<ul>
 			<!-- NOTIFICATIONS -->
+			<div class="onoffswitch">
+			    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+			    <label class="onoffswitch-label" for="myonoffswitch">
+			        <span class="onoffswitch-inner">
+			            <span class="onoffswitch-active"><span class="onoffswitch-switch">ON</span></span>
+			            <span class="onoffswitch-inactive"><span class="onoffswitch-switch">OFF</span></span>
+			        </span>
+			    </label>
+			</div>
+
+			<!--/*
 			<li id="notifications">
 				<label for="notifications" class="label">Notifications</label>			
 				<input class="checkbox field notifications css-checkbox" {{ User::NotificationsCheckox() }} id="notifications"  name="notifications" type="checkbox" value="1">						
 			</li>
 			<br>
+			*/-->
 		<!-- /////////// USER INFORMATION \\\\\\\\\\ -->
 			<li id="userInformation">
 				<h4>user information</h4>

@@ -80,7 +80,7 @@ class settingsController extends BaseController {
 							$centreX = round($im->getWidth() / 2);
 							$centreY = round($im->getHeight() / 2);
 
-							$s = 70;
+							$s = 100;
 							$x1 = $centreX - $s;
 							$y1 = $centreY - $s;
 

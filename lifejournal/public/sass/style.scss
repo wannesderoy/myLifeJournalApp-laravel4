@@ -207,6 +207,11 @@ input[type=checkbox].css-checkbox + label.css-label {
 	vertical-align:middle;
 	cursor:pointer;
 }
+input.error_field {
+	border-bottom:1px solid $r;
+	border-right:1px solid $r;
+	border-left:1px solid $r;
+}
 #error_message_start {
 	background-color:$r;
 	padding:20px;
@@ -282,3 +287,4 @@ input[type=checkbox].css-checkbox + label.css-label {
 	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(0%,rgba(0,0,0,1)), color-stop(90%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,0)));
 }
 @import "cal";
+@import "settingsswitch";
