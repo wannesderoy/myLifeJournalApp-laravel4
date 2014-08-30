@@ -10,23 +10,18 @@
 	{{ Form::open(array('action' => 'settingsController@postSettings', 'files' => true, 'class' => 'settings form')) }}
 		<ul>
 			<!-- NOTIFICATIONS -->
-			<div class="onoffswitch">
-			    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-			    <label class="onoffswitch-label" for="myonoffswitch">
-			        <span class="onoffswitch-inner">
-			            <span class="onoffswitch-active"><span class="onoffswitch-switch">ON</span></span>
-			            <span class="onoffswitch-inactive"><span class="onoffswitch-switch">OFF</span></span>
-			        </span>
-			    </label>
-			</div>
-
-			<!--/*
 			<li id="notifications">
-				<label for="notifications" class="label">Notifications</label>			
-				<input class="checkbox field notifications css-checkbox" {{ User::NotificationsCheckox() }} id="notifications"  name="notifications" type="checkbox" value="1">						
+				<p class="label">Notifications</p>
+				<div class="onoffswitch" style="float:right;">
+				    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked='checked'>
+				    <label class="onoffswitch-label" for="myonoffswitch">
+				        <span class="onoffswitch-inner">
+				            <span class="onoffswitch-active"><span class="onoffswitch-switch">ON</span></span>
+				            <span class="onoffswitch-inactive"><span class="onoffswitch-switch">OFF</span></span>
+				        </span>
+				    </label>
+				</div>
 			</li>
-			<br>
-			*/-->
 		<!-- /////////// USER INFORMATION \\\\\\\\\\ -->
 			<li id="userInformation">
 				<h4>user information</h4>
@@ -71,7 +66,7 @@
 			<!-- PROFILE PICTURE -->
 			<li id="profilepicture">
 				{{ Form::label('profilepicture', 'profile picture', array('class' => 'label')) }}
-				{{ Form::file('profilepicture', array('class' => 'field profilepicture')); }}
+				{{ Form::file('profilepicture', array('class' => 'field profilepicture file input')); }}
 					@if($errors->has('profilepicture'))
 							{{ $errors->first('profilepicture') }}
 					@endif
@@ -82,22 +77,25 @@
 
 			<!-- SUBMIT -->
 			<li id="submit">
-				{{ Form::submit('Save'); }}
+				<input class="large danger btn settings_save" type="submit" value='Save'/>
+				<!-- {{ Form::submit('Save', array('class' => 'large default btn settings_save')); }} -->
+			</li>
+			<li>
+				<div id="logout">
+					<!-- LOGOUT -->
+					<div class="large danger btn logout">
+						<a href="{{ URL::route('logout') }}">
+							Logout
+						</a>		
+					</div>
+				</div>
 			</li>
 		</ul>
-	{{ Form::close() }}
-	
-	<div>
-		<!-- LOGOUT -->
-		<div>
-			<a href="{{ URL::route('logout') }}">
-				Logout
-			</a>
-		</div>
-	</div>
+	{{ Form::close() }}	
 </div>
 <script>
  	// grant or resist permission for notifications via button
+ 	/*
 	var dnperm = document.getElementById('notifications');
 	dnperm.addEventListener('click', function(e) {
 		e.preventDefault();
@@ -114,5 +112,6 @@
 			});
 		}
 	});
+*/
 </script>
 @stop

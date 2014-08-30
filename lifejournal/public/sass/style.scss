@@ -24,20 +24,24 @@ header {
 	padding:10px;
 	border-bottom: 1px solid $dbg;
 	nav { 
+		z-index:999999999;
 		position: absolute;
 		display:none; 
 		right:0px;
 		margin-top: 52px;
 		ul {
+			z-index:999999999;
 			margin-top: 28px;
 			float: left;
 			width: 420px;
 			li {
+				z-index:999999999;
 				background-color:$bg;
 				padding:20px;
 				border:1px solid $dbg;
 			}
 			span {
+				z-index:999999999;
 				color:$lg;
 				font-size: 35px;
 				float: right;
@@ -149,12 +153,15 @@ header {
 		padding-top:40px;
 		padding-bottom: 60px;
 	}
+	li:last-child {
+		border-top:1px solid $b;
+		margin-top:50px;
+	}
 	#userInformation {
-		margin-bottom:80px;
+		margin:20px 0 120px 0;
 		p {
 			width: 80%;
-			padding: 20px 0px 20px 0px;
-			border-bottom: 1px solid black;
+			padding: 20px 0px 20px 0px;	
 		}
 	}
 	.label {
@@ -177,12 +184,22 @@ header {
 	font-size:26px;
 	text-align:center;
 }
+.settings_save {
+	color:$w;
+	width:40%;
+}
+#logout {
+	padding-top:40px;
+	.logout {
+		width: 40%;
+	}
+}
 input {
 	border:none;
 	box-shadow: none;
 	background-image: none;
 	-webkit-backface-visibility: hidden;
-	z-index:1;
+	z-index:0;
 }
 input[type="text"],input[type="password"],input[type="email"],input[type="date"] {
 	border-bottom:1px solid $dbg;
@@ -196,16 +213,9 @@ input[type="text"],input[type="password"],input[type="email"],input[type="date"]
 	font-size:21px;
 	float:left;
 }
-input[type=checkbox].css-checkbox + label.css-label {
-	padding-left:31px;
-	height:26px; 
-	display:inline-block;
-	line-height:26px;
-	background-repeat:no-repeat;
-	background-position: 0 0;
-	font-size:30px;
-	vertical-align:middle;
-	cursor:pointer;
+input[type="file"] {
+	border:1px solid $r;
+	height:100px;
 }
 input.error_field {
 	border-bottom:1px solid $r;
