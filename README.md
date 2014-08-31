@@ -21,5 +21,7 @@ In the controllers I write all my logic for the forms in the app. They contain c
 
 The app is build to be as lightweight and safe as possible for my knowledge, no useless code, pointless database queries or form without a token.
 
+The technologies used in this app are: Laravel 4 (on php 5.5.1 & MySQL), Jquery, Waypoints, Stellar, Compass, Gumby.
+
 
 This whole app is part assignment, part learning, part enjoyment.
