@@ -4,11 +4,13 @@
 	
 		@if(Auth::check())
 <div class="wrapper home">
-	<div id="messages">
-		@if(Session::has('global'))
+
+	@if(Session::has('global'))
+		<div id="messages">
 			  <li class="primary alert message">{{ Session::get('global')}}</li>
-		@endif
-	</div>
+		</div>
+	@endif
+
 		<div id="question">
 			<table>
 				<tbody>
@@ -53,8 +55,8 @@
 									<h3>{{ $s->year }}</h3>
 									<p>{{ $s->answer }}</p>
 								</div>
-								@if(isset($s->image))
-									<img id="answer_pic" src="{{ $s->image_s }}" alt="answer_pic" width="150">
+								@if(isset($s->image_s))
+									<img id="answer_pic" src="{{{ $s->image_s }}}" alt="answer_pic" width="150">
 								@endif
 							</li>
 						@endforeach
@@ -65,8 +67,10 @@
 									<h3>{{ $s->year }}</h3>
 									<p>{{ $s->answer }}</p>
 								</div>
-								@if(isset($s->image))
-									<img id="answer_pic" src="{{ $s->image_s }}" alt="answer_pic" height="100">
+								@if(isset($s->image_s))
+									<a href="{{ URL::route('answer-image', $s->image_name ."/". $s->question_id) }}">
+										<img id="answer_pic" src="{{ $s->image_s }}" alt="answer_pic" height="100">
+									</a>
 								@endif
 							</li>
 						@endforeach
@@ -80,7 +84,7 @@
 		if($('#messages').length != 0) {
 			setTimeout(function() {
 				$('#messages').slideUp('slow');
-			}, 5000);
+			}, 7000);
 		}
 	});
 	</script>

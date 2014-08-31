@@ -25,4 +25,10 @@ Class Question extends Eloquent {
 		$b = $query->where('id','=', '999')->first()->question;
 		return $b;
 	}
+
+	// Get question of day value (from url)
+	public function scopeDynamicDayQuestion($query, $day) {
+		$question = $query->where('id', '=', $day)->first();
+		return $question;
+	}
 }

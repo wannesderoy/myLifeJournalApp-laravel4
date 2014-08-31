@@ -1,7 +1,7 @@
 <?php
 
 Class Answer extends Eloquent {
-	protected $fillable = array('answer', 'year', 'user_id', 'question_id', 'image_s', 'image_l');
+	protected $fillable = array('answer', 'year', 'user_id', 'question_id', 'image_s', 'image_l', 'image_name');
 	protected $table = "answers";
 
 	// DEFINE RELATIONSHIPS --------------------------------------------------
@@ -17,6 +17,12 @@ Class Answer extends Eloquent {
 			$answerx->answer;
 		});
 		return $answers;
+	}
+
+	// get answer model where image name is $image_name (from view url)
+	public function scopeImage($query, $image_name) {
+		$answer = $query->where('image_name', '=', $image_name)->first();
+		return $answer;
 	}
 
 	// get the answers for the users birtyday -> has id 999

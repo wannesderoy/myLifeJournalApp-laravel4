@@ -35,7 +35,11 @@ Route::get('app/calendar', array(
 		'as' 	=> 'calendar',
 		'uses' 	=> 'HomeController@getCal'
 ));	
-
+// Answer picture route
+Route::get('/answer/{image_name}/{day}', array(
+	'as'	=>'answer-image',
+	'uses'	=>'HomeController@answerImage'
+));
 /*
 // CSRF protection group nested in the guest group \\\\\\\\\\\\\\\\
 */

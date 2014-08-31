@@ -334,5 +334,22 @@ input.error_field {
 	text-align:left;
 	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(0%,rgba(0,0,0,1)), color-stop(90%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,0)));
 }
+.answerpic {
+	text-align:center;
+	h1 {
+		color:$dbg;
+	}
+	#image_l {
+	}
+	#back_button {
+		border-bottom:1px solid $dbg;
+		height:80px;
+		width:640px;
+		p {
+			padding:20px;
+			font-size: 1.4em;
+		}
+	}
+}
 @import "cal";
 @import "settingsswitch";
