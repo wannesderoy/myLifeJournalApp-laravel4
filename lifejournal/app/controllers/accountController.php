@@ -33,8 +33,8 @@ Class accountController extends BaseController {
 						->withInput(); 
 			} else { 
 				// if input is valid, store in $var
-				$email_login = Input::get('email');
-				$pass_login = Input::get('password');
+				$email_login 	= Input::get('email');
+				$pass_login 	= Input::get('password');
 				
 				// attempt to login with credentials
 				$auth = Auth::attempt(array( 
@@ -76,7 +76,7 @@ Class accountController extends BaseController {
 			);
 			// set the rules by which the form is validated
 			$validator = Validator::make(Input::all(), array(
-					'name' 		=> 'required|min:4',
+					'name' 		=> 'required',
 					'email'		=> 'required|email|max:50|unique:users',
 					'birthday'	=> 'required|date',
 					'password'	=> 'required|min:3'

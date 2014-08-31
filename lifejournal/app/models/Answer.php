@@ -36,7 +36,7 @@ Class Answer extends Eloquent {
 
 	// check if user hase filled in answer to todays question
 	public function scopeCheckTodayAnswer($query) {
-		$check = $query->where('question_id', date("z")+1)->where('user_id', '=', Auth::user()->id)->where('year', date('Y'))->get();
+		$check = $query->where('question_id', date("z")+1)->orWhere('question_id','=','999')->where('user_id', '=', Auth::user()->id)->where('year', date('Y'))->get();
 		if ($check->isEmpty()) { 
 			return 'false';
 		} else {

@@ -69,9 +69,9 @@
 						<li><a href="http://laravel.com" target="_blank" class="devicons laravel"></a></li>
 						<li><a href="http://www.mysql.com/" target="_blank" class="devicons sql"></a></li>
 						<li><a href="http://php.net" target="_blank" class="devicons php"></a></li>
-						<li><a href="http://compass-style.org" target="_blank" class="devicons compass"></a></li>
 						<li><a href="http://www.wikiwand.com/nl/JavaScript" target="_blank" class="devicons js"></a></li>
 						<li><a href="http://jquery.com/" target="_blank" class="devicons jquery"></a></li>
+						<li><a href="http://compass-style.org" target="_blank" class="devicons compass"></a></li>
 					</ul>
 				</div>
 				<div id="contact-info">

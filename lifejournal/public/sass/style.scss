@@ -177,15 +177,17 @@ header {
 		margin-top:50px;
 	}
 	li#profilepicture {
-		input {
-			display:none;
+		height: 100px;
+		label {
+			margin-right: 170px;
+			float:right;
 		}
 		img {
-			float:right;
+		}
+		input {
 		}
 	}
 	li#submit {
-		margin-top: 100px;
 	}
 	#userInformation {
 		margin:20px 0 120px 0;
@@ -242,10 +244,6 @@ input[type="text"],input[type="password"],input[type="email"],input[type="date"]
 	background-color: $lg;
 	font-size:21px;
 	float:left;
-}
-input[type="file"] {
-	border:1px solid $r;
-	height:100px;
 }
 input.error_field {
 	border-bottom:1px solid $r;

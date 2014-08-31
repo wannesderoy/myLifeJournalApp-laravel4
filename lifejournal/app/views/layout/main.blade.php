@@ -8,8 +8,6 @@
 	{{ HTML::script('js/jquery.min.js') }}
 	{{ HTML::script('js/jquery-ui.min.js') }}
 	{{ HTML::script('js/moment.min.js') }}
-	{{ HTML::script('js/main.js') }}
-
 	@if(Auth::check())
 		<style>
 		#profile_pic_header {
@@ -24,12 +22,12 @@
 		}
 		</style>
 	@endif
-
 </head>
 <body>
 	@if(Auth::check())
 		@include('layout.navigation')
 	@endif
 	@yield('content')
+	{{ HTML::script('js/main.js') }}
 </body>
 </html>

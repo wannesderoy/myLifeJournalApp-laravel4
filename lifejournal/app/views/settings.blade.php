@@ -66,16 +66,12 @@
 
 			<!-- PROFILE PICTURE -->
 			<li id="profilepicture">
-				<label class='label'>
-					Profile picture
-				</label>
-				<br>
-				<p>Click to change:</p>
-				<div id="profilepicture">
+				<p class='label'>Profile picture</p>
+				<div>
 					<label for="profilepicture">
-						<img src="{{ "/".Auth::user()->profile_pic }}" alt="image_icon" width="80">
+						<img src="../images/image_icon.png" alt="image_icon" width="80"/>
 					</label>
-					<input type="file" id="profilepicture" name="profilepicture">	
+					<input type="file" id="profilepicture" name="profilepicture">
 				</div>
 			</li>
 			<br>

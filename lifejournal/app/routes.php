@@ -36,7 +36,7 @@ Route::get('app/calendar', array(
 		'uses' 	=> 'HomeController@getCal'
 ));	
 // Answer picture route
-Route::get('/answer/{image_name}/{day}', array(
+Route::get('app/answer/{image_name}/{day}', array(
 	'as'	=>'answer-image',
 	'uses'	=>'HomeController@answerImage'
 ));
