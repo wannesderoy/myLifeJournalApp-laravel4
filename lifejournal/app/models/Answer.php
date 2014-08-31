@@ -1,7 +1,7 @@
 <?php
 
 Class Answer extends Eloquent {
-	protected $fillable = array('answer', 'year', 'user_id', 'question_id', 'image');
+	protected $fillable = array('answer', 'year', 'user_id', 'question_id', 'image_s', 'image_l');
 	protected $table = "answers";
 
 	// DEFINE RELATIONSHIPS --------------------------------------------------

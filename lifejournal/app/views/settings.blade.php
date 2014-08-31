@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-<div id="wrapper">
+<div class="wrapper settings">
 	<div id="messages">
 		@if(Session::has('global'))
 			  <li class="primary alert message">{{ Session::get('global')}}</li>
@@ -63,13 +63,20 @@
 					@endif
 			</li>
 			<br>
+
 			<!-- PROFILE PICTURE -->
 			<li id="profilepicture">
-				{{ Form::label('profilepicture', 'profile picture', array('class' => 'label')) }}
-				{{ Form::file('profilepicture', array('class' => 'field profilepicture file input')); }}
-					@if($errors->has('profilepicture'))
-							{{ $errors->first('profilepicture') }}
-					@endif
+				<label class='label'>
+					Profile picture
+				</label>
+				<br>
+				<p>Click to change:</p>
+				<div id="profilepicture">
+					<label for="profilepicture">
+						<img src="{{ "/".Auth::user()->profile_pic }}" alt="image_icon" width="80">
+					</label>
+					<input type="file" id="profilepicture" name="profilepicture">	
+				</div>
 			</li>
 			<br>
 			<!-- TOKEN -->

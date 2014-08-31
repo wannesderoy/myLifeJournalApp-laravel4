@@ -3,7 +3,7 @@
 @section('content')
 	
 		@if(Auth::check())
-<div id="wrapper">
+<div class="wrapper home">
 	<div id="messages">
 		@if(Session::has('global'))
 			  <li class="primary alert message">{{ Session::get('global')}}</li>
@@ -49,8 +49,13 @@
 					@if(Auth::user()->birthday == date('Y-m-d'))
 						@foreach (Answer::BdayAnswer() as $s)
 							<li>
-								<h3>{{ $s->year }}</h3>
-								<p>{{ $s->answer }}</p>
+								<div id="answer_text">
+									<h3>{{ $s->year }}</h3>
+									<p>{{ $s->answer }}</p>
+								</div>
+								@if(isset($s->image))
+									<img id="answer_pic" src="{{ $s->image_s }}" alt="answer_pic" width="150">
+								@endif
 							</li>
 						@endforeach
 					@else
@@ -61,7 +66,7 @@
 									<p>{{ $s->answer }}</p>
 								</div>
 								@if(isset($s->image))
-									<img id="answer_pic" src="{{ $s->image }}" alt="answer_pic" width="150">
+									<img id="answer_pic" src="{{ $s->image_s }}" alt="answer_pic" height="100">
 								@endif
 							</li>
 						@endforeach

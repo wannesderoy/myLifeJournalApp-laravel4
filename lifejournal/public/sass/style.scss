@@ -10,12 +10,21 @@ body {
 	width:640px;
 	height:1136px;
 }
-#wrapper {
-	height:1136px;
+.wrapper {
 	background-color:$lg;
 	form {
 		padding:20px;
 	}
+}
+.wrapper,.settings {
+	height:90%;
+}
+#wrapper-start {
+	background-image: url('../images/app_background.png');
+	background-size: 640px 1136px;
+	background-repeat:no-repeat;
+	background-position:left;
+	height:1136px;
 }
 header {
 	z-index:999999999;
@@ -90,19 +99,11 @@ header {
 	opacity: 0;
 	filter: alpha(opacity=0);
 }
-
 .login {
 	border-right: 3px solid #fff;
 }
 .register {
 	border-right: 3px solid #fff;
-}
-#wrapper-start {
-	background-image: url('../images/app_background.png');
-	background-size: 640px 1136px;
-	background-repeat:no-repeat;
-	background-position:left;
-	height:1136px;
 }
 .field {
 	span {
@@ -133,12 +134,19 @@ header {
 		font-size: 24px;
 	}
 	#new-answers {
-		padding:15px 15px 15px 30px;
+		padding:15px 15px 0px 30px;
+		form {
+			padding:0 0 0 0;
+			input.answer {
+				margin-top: 20px;
+			}
+		}
 	}
 	#old-answers {
 		li {
 			border-top:2px solid $bg;
 			padding:15px 15px 15px 30px;
+			height: 150px;
 		}
 		#answer_text {
 			float:left;
@@ -148,6 +156,8 @@ header {
 			float:right;
 			width: 20%;
 			margin-top: 20px;
+			position: absolute;
+			clip: rect(10px, 100px, 100px, 10px);
 		}
 	}
 }
@@ -165,6 +175,17 @@ header {
 	li:last-child {
 		border-top:1px solid $b;
 		margin-top:50px;
+	}
+	li#profilepicture {
+		input {
+			display:none;
+		}
+		img {
+			float:right;
+		}
+	}
+	li#submit {
+		margin-top: 100px;
 	}
 	#userInformation {
 		margin:20px 0 120px 0;

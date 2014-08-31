@@ -37,23 +37,44 @@ class HomeController extends BaseController {
 				if (Input::hasFile('answer_image')) {
 					$size = Input::file('answer_image')->getSize();
 					if($size < 50000000) {
+						// the same for both images
 						$extension = Input::file('answer_image')->getClientOriginalExtension();
-						$path = "answer_images/" . User::SlugName()."/";
-						$filename = Str::lower(Str::random(20, 'numeric'));		
-						$filenameAndExtension = $filename . "." . $extension;	
-						$fullFile = $path . $filenameAndExtension;
-						$fileMove = Input::file('answer_image')->move($path, $filenameAndExtension);
-						// $u->profile_pic = $fullFile;
+						$filename = Str::lower(Str::random(20, 'numeric'));
+						$filenameAndExtension = $filename . "." . $extension;
 
+						///////////////////// Large image ----------------------------------
+						$path_l = "answer_images/" . User::SlugName()."_large/";
+						$fullFile_l = $path_l. $filenameAndExtension;
+						$fileMove_l = Input::file('answer_image')->move($path_l, $filenameAndExtension);
+
+						$image_l = new SimpleImage();
+						$image_l->load($fullFile_l);
+						$image_l->resizeToHeight(200);
+						$image_l->save($fullFile_l);
+
+
+						///////////////////// Small image ----------------------------------
+						$path_s = "answer_images/" . User::SlugName()."_small/";
+						$fullFile_s = $path_s . $filenameAndExtension;
+						$fileMove_s = Input::file('answer_image')->move($path_s, $filenameAndExtension);
+
+						$image_s = new SimpleImage();
+						$image_s->load($fullFile_s);
+						$image_s->resizeToHeight(200);
+						$image_s->save($fullFile_s);
+
+						
 						// create input in db
 						$answer = Answer::create(array(
 								'answer'		=> Input::get('answer'),
 								'year'			=> date("Y"),
 								'user_id'		=> Auth::user()->id,
 								'question_id'	=> date("z")+1,
-								'image'			=> $fullFile
+								'image_s'		=> $fullFile_s,
+								'image_l'		=> $fullFile_l
 							)
 						);
+
 						if($answer) {
 							// if answer is saved succesfully in db, redirect to home with succes message
 							return Redirect::route('home')->with('global', 'your answer has been saved');
@@ -63,10 +84,11 @@ class HomeController extends BaseController {
 						}
 
 					} else {
+						// if picture size is to large
 						return Redirect::route('home')->with('global', 'Picture size is to large.');
 					}
 				} else {
-					// create input in db
+					// if no image is included create input in db
 					$answer = Answer::create(array(
 							'answer'		=> Input::get('answer'),
 							'year'			=> date("Y"),

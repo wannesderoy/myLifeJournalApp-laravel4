@@ -8,7 +8,7 @@ class settingsController extends BaseController {
 
 	public function postSettings() {
 		if ( Session::token() !== Input::get( '_token' ) ) {
-			return Redirect::route('settings')->with('global', 'There was a token mismatch');		
+			return Redirect::route('start-register')->with('global', 'There was a token mismatch, please try again.');		
         } else {
 			$v = Validator::make(Input::all(), array(
 					'email' 			=> 'email',
@@ -71,25 +71,21 @@ class settingsController extends BaseController {
 						$fileMove 				= Input::file('profilepicture')->move($path, $filenameAndExtension);
 						$u->profile_pic 		= $fullFile;
 
-							// $image = new SimpleImage();
-							// $image->load($fullFile);
-							// $image->resizeToWidth(70);
-							// $image->save($fullFile);
-								
-							$im 		= new ImageManipulator($fullFile);
-							$centreX 	= round($im->getWidth() / 2);
-							$centreY 	= round($im->getHeight() / 2);
+						$im 		= new ImageManipulator($fullFile);
+						$centreX 	= round($im->getWidth() / 2);
+						$centreY 	= round($im->getHeight() / 2);
 
-							$s 	= 100;
-							$x1 = $centreX - $s;
-							$y1 = $centreY - $s;
+						$s 	= 100;
+						$x1 = $centreX - $s;
+						$y1 = $centreY - $s;
 
-							$x2 = $centreX + $s;
-							$y2 = $centreY + $s;
+						$x2 = $centreX + $s;
+						$y2 = $centreY + $s;
 
-							$im->crop($x1, $y1, $x2, $y2);
+						$im->crop($x1, $y1, $x2, $y2);
 
-							$im->save($fullFile);
+						$im->save($fullFile);
+						
 					} else {
 						return Redirect::route('settings')->with('global', 'you profile picture is too big and has not been uploaded. Max allowed is 500kb -> yours = '.$size.'.');		
 					}

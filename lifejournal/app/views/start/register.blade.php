@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div id="wrapper">
+<div class="wrapper register">
 
 	@if(Session::has('global'))
 		<div id="error_message_start">
