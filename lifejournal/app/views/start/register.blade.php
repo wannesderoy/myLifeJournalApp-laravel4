@@ -51,7 +51,6 @@
 					{{ $errors->first('birthday') }}
 				</div>
 			@endif
-
 		</div>
 
 		<div class="field">
@@ -65,6 +64,7 @@
 				</div>
 			@endif
 		</div>	
+		
  	<input class="large danger btn" type="submit" value='Register'/>
 		{{ Form::token() }}
 	</form>

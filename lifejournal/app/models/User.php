@@ -15,10 +15,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function answer() {
 		return $this->hasMany('Answer'); // this matches the Eloquent model
 	}
+	
 	// returns the users name in slug
 	public function scopeSlugName($scope) {
 		return Str::slug(Auth::user()->name, '_');
 	}
+
 	// return if notifications are on or off
 	public function scopeNotifications($query) {
 		if(Auth::user()->settings_all == 1) {
@@ -27,6 +29,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return 'false';
 		}
 	}
+
 	// return if notifications is on or of on settings page
 	public function scopeNotificationsCheckox($query) {
 		if(Auth::user()->settings_all == 1) {
@@ -35,10 +38,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return ' ';
 		}
 	}
-/*
-	public function scopeProfilePic($query) {
 
-	}*/
+	// return the user birthdate (only day & month)
+	public function scopeUserBirthdate($scope) {
+		$date = Auth::user()->birthday;
+		return $birthdate = substr($date, -5);
+	}
+
 	/**
 	 * The database table used by the model.
 	 *

@@ -51,12 +51,6 @@
 									<span>Settings</span>
 								</li>
 							</a>
-							<a href="{{ URL::route('calendar') }}">
-								<li>
-									<img src="/images/calendar_icon.png" alt="calendar_icon" width="80"/>
-									<span>Calendar</span>
-								</li>
-							</a>
 
 						@endif
 					</ul>

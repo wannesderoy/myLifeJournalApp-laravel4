@@ -337,18 +337,26 @@ input.error_field {
 .answerpic {
 	text-align:center;
 	h1 {
-		color:$dbg;
+		background-color: $r;
+		color:$w;
+		// border-bottom:1px solid $dbg;
 	}
 	#image_l {
+		padding:20px 0 0 20px;
 	}
 	#back_button {
-		border-bottom:1px solid $dbg;
+		// border-bottom:1px solid $dbg;
 		height:80px;
 		width:640px;
 		p {
 			padding:20px;
 			font-size: 1.4em;
 		}
+	}
+	#answer p {
+		margin: 20px;
+		font-size: 2em;
+		text-align: center;
 	}
 }
 @import "cal";

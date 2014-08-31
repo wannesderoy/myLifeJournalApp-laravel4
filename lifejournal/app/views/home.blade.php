@@ -15,7 +15,7 @@
 			<table>
 				<tbody>
 					<tr>
-						@if(Auth::user()->birthday == date('Y-m-d'))
+						@if(User::UserBirthdate() == date('m-d'))
 							<td><h1>{{ Question::BdayQuestion() }}</h1></td>
 						@else
 							<td><h1>{{ Question::dayQuestion() }}</h1></td>
@@ -48,7 +48,7 @@
 			</div>
 			<div id="old-answers">
 				<ul>
-					@if(Auth::user()->birthday == date('Y-m-d'))
+					@if(User::UserBirthdate() == date('m-d'))
 						@foreach (Answer::BdayAnswer() as $s)
 							<li>
 								<div id="answer_text">
@@ -56,7 +56,9 @@
 									<p>{{ $s->answer }}</p>
 								</div>
 								@if(isset($s->image_s))
-									<img id="answer_pic" src="{{{ $s->image_s }}}" alt="answer_pic" width="150">
+									<a href="{{ URL::route('answer-image', $s->image_name ."/". $s->question_id) }}">
+										<img id="answer_pic" src="{{ $s->image_s }}" alt="answer_pic" height="100">
+									</a>
 								@endif
 							</li>
 						@endforeach

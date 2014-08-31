@@ -7,7 +7,12 @@
 				<p>&#8592; Go back</p>
 			</a>
 		</div>
-		<h1>{{ $question->question }}</h1>
-		<img id="image_l" src="{{ "/".$answer->image_l }}" alt="image" width="600">
+		<h1>
+			{{ $question->question }}
+		</h1>
+		<img id="image_l" src="{{ "/".$answer->image_l }}" alt="image" width="600"/>
+		<div id="answer">
+			<p>{{ $answer->answer }}</p>
+		</div>
 	</div>
 @stop

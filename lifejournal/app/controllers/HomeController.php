@@ -12,6 +12,7 @@ class HomeController extends BaseController {
         } else {
 			$v = Validator::make(Input::all(), array(
 					'answer' 		=> 'required',
+					'answer_image'	=> 'image'
 				)
 			);
 			if ($v->fails()) {
@@ -19,7 +20,9 @@ class HomeController extends BaseController {
 					->withErrors($v)
 					->withInput();
 			} else {
-				if(Auth::user()->birthday == date('Y-m-d')) {
+				// if it's the users birthday
+				if(User::UserBirthdate() == date('m-d')) {
+					////////////////////////////////////// On a users birthday ----------------------------------
 					if (Input::hasFile('answer_image')) {
 						$size = Input::file('answer_image')->getSize();
 						if($size < 50000000) {
@@ -59,7 +62,7 @@ class HomeController extends BaseController {
 									'answer'		=> Input::get('answer'),
 									'year'			=> date("Y"),
 									'user_id'		=> Auth::user()->id,
-									'question_id'	=> date("z")+1,
+									'question_id'	=> '999',
 									'image_s'		=> $fullFile_s,
 									'image_l'		=> $fullFile_l,
 									'image_name'	=> $rand_file
@@ -95,23 +98,8 @@ class HomeController extends BaseController {
 							return Redirect::route('home')->with('global', 'your answer has NOT been saved');
 						}
 					}
-
-					////////////////////////////////////// On a users birthday ----------------------------------
-					/*$answer = Answer::create(array(
-							'answer'		=> Input::get('answer'),
-							'year'			=> date("Y"),
-							'user_id'		=> Auth::user()->id,
-							'question_id'	=> '999'
-						)
-					);
-					if($answer) {
-						return Redirect::route('home')->with('global', 'your answer has been saved');
-					} else {
-						return Redirect::route('home')->with('global', 'your answer has NOT been saved');
-					}*/
 				} else {
 					////////////////////////////////////// On a regular day ---------------------------------
-					// image handler
 					if (Input::hasFile('answer_image')) {
 						$size = Input::file('answer_image')->getSize();
 						if($size < 50000000) {
@@ -157,7 +145,6 @@ class HomeController extends BaseController {
 									'image_name'	=> $rand_file
 								)
 							);
-
 							if($answer) {
 								// if answer is saved succesfully in db, redirect to home with succes message
 								return Redirect::route('home')->with('global', 'your answer has been saved');
