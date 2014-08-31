@@ -25,25 +25,25 @@
 			</table>
 		</div>
 		<div id="answers">
-				<div id="new-answers">
-					<h3>{{ date("Y") }}</h3>
-					{{ Form::open(array('action' => 'HomeController@postHome', 'files' => true, 'id' => 'answer-form')) }}
-						<div>
-							<input class="answer" type="text" name="answer" {{ (Input::old('answer')) ? ' value="'. Input::old('answer') .' " ' : '' }}>
-						</div>
+			<div id="new-answers">
+				<h3>{{ date("Y") }}</h3>
+				{{ Form::open(array('action' => 'HomeController@postHome', 'files' => true, 'id' => 'answer-form')) }}
+					<div>
+						<input class="answer" type="text" name="answer" {{ (Input::old('answer')) ? ' value="'. Input::old('answer') .' " ' : '' }}>
+					</div>
 
-						<div id="take_photo">
-							<label for="answer_image">
-								<img src="images/image_icon.png" alt="image_icon" width="80"/>
-							</label>
-							<input type="file" id="answer_image" name="answer_image">
-						</div>
+					<div id="take_photo">
+						<label for="answer_image">
+							<img src="images/image_icon.png" alt="image_icon" width="80"/>
+						</label>
+						<input type="file" id="answer_image" name="answer_image">
+					</div>
 
-						<div>
-							<input class="submit" type="submit" value="Save">
-						</div>
-						{{ Form::token() }}
-					{{ Form::close() }}
+					<div>
+						<input class="submit" type="submit" value="Save">
+					</div>
+					{{ Form::token() }}
+				{{ Form::close() }}
 			</div>
 			<div id="old-answers">
 				<ul>

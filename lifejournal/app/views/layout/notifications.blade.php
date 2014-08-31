@@ -6,15 +6,19 @@ var a = "{{ User::Notifications() }}"
 // If todays question has been answered, false = not yet answered, true = answered
 var b = "{{ Answer::CheckTodayAnswer() }}";
 
+// var b = 'true';
+console.log('1');
+
 // if todays question has not been answered (false)
 if (b == 'false') {
-
+	console.log('2');
 	// If notifications are true (on)
 	if(a == 'true')
-
+		console.log('3');
 		// Call browser notification at end of the day when notifications is on and answer is
 		var now = new Date();
 		var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 14, 22, 0, 0) - now;
+
 		if (millisTill10 < 0) {
 		     millisTill10 += 86400000;
 		}

@@ -95,7 +95,10 @@
 	{{ HTML::script('js/smooth-scroll.js') }}
 	<script type="text/javascript">
 		$(document).ready(function() {
+			// initiate sticky header
 			$('#header').waypoint('sticky');
+
+
 			$(window).scroll(function() {
 				if ($(this).scrollTop() > 1) {  
     				$('#header').addClass("sticky");
@@ -103,7 +106,10 @@
 				    $('#header').removeClass("sticky");
   				}
 			});
+			// initiate stellar parallax effect
 			$.stellar();
+
+			// add/remove active classes for menu on sections of the site
 			$('#home').waypoint(function() {
 				$("#menu li").removeClass("active");
 				$(".home").addClass("active");	
