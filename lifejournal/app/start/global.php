@@ -92,6 +92,97 @@ HTML::macro('date_mlj', function()
     return '<input type="date" name="birthday" class="field birthday" value="'.Auth::user()->birthday.'"/>';
 });
 
+/**
+ * (ImageHandler extends the SimpeImage class)
+ *  ImageHandler class crops the images to the specific needs for this app
+ *  only need to call the image_ function once for large or small crop.
+ *
+ *
+ */
+class ImageHandler {
+
+    /**
+     * @param file      $file
+     * @param string    $extension
+     * @param string    $file_name_rand
+     *
+     * @return $large_image_name 
+     * @throws Exeption -> redirect to home with global
+     *
+     */
+    public static function image_large($file,$extension,$file_name_rand) {
+        $username   = User::SlugName();
+        $today      = date("z");
+
+        ///////////////////// Large image ----------------------------------
+        $filename_l             = $file_name_rand.'_large';
+        $filenameAndExtension_l = $filename_l . "." . $extension;
+        $path_l                 = "answer_images/".$username."/".$today."/";
+        $fullFile_l             = $path_l. $filenameAndExtension_l;
+
+        // move large(original) file to location
+        $fileMove_l             = $file->move($path_l, $filenameAndExtension_l);
+
+        // Crop image to $700 px width
+        $image_l    = new SimpleImage();
+        $img        = $image_l->load($fullFile_l);
+        $width      = $img->get_width();
+        $w          = 700;
+
+        if($width > $w) {
+            $image_l->fit_to_width($w);
+            $image_l->save($fullFile_l);
+            return $fullFile_l;
+        } else {
+            $image_l->save($fullFile_l);
+            return $fullFile_l;
+        }
+    }
+    
+    /**
+     * @param file      $file
+     * @param string    $extension
+     * @param string    $file_name_rand
+     *
+     * @return string   $small_image_name 
+     * @throws Exeption -> redirect to home with global
+     *
+     */
+    public static function image_small($file,$extension,$file_name_rand) {
+        $username   = User::SlugName();
+        $today      = date("z");
+
+        ///////////////////// Small image ----------------------------------
+        $filename_s             = $file_name_rand.'_small';
+        $filenameAndExtension_s = $filename_s . "." . $extension;
+        $path_s                 = "answer_images/".$username."/".$today."/";
+        $fullFile_s             = $path_s . $filenameAndExtension_s;
+
+        ///////////////////////////////
+        $filename_l             = $file_name_rand.'_large';
+        $filenameAndExtension_l = $filename_l . "." . $extension;
+        $fullFile_l             = $path_s. $filenameAndExtension_l;
+
+        // Copy large image to small image
+        File::copy($fullFile_l,$fullFile_s);
+
+        // Crop small image to 200px height
+        $image_s    = new SimpleImage();
+        $img        = $image_s->load($fullFile_s);
+        $height     = $img->get_height();
+        $h          = 200;
+
+        if($height > $h) {
+            $image_s->fit_to_height($h);
+            $image_s->save($fullFile_s);
+            return $fullFile_s;
+        } else {
+            $image_s->save($fullFile_s);
+            return $fullFile_s;
+        }
+    }
+    
+}
 
 /**
  * Class SimpleImage

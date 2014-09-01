@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package		SimpleImage class
  * @version		2.5.3
