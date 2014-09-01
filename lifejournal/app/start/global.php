@@ -102,6 +102,9 @@ HTML::macro('date_mlj', function()
 class ImageHandler {
 
     /**
+     *
+     * function to crop image in large format: 700px
+     *
      * @param file      $file
      * @param string    $extension
      * @param string    $file_name_rand
@@ -114,7 +117,6 @@ class ImageHandler {
         $username   = User::SlugName();
         $today      = date("z");
 
-        ///////////////////// Large image ----------------------------------
         $filename_l             = $file_name_rand.'_large';
         $filenameAndExtension_l = $filename_l . "." . $extension;
         $path_l                 = "answer_images/".$username."/".$today."/";
@@ -129,17 +131,23 @@ class ImageHandler {
         $width      = $img->get_width();
         $w          = 700;
 
+        // of image width is larger than 700px crop, otherwise not
         if($width > $w) {
             $image_l->fit_to_width($w);
             $image_l->save($fullFile_l);
+            //return full path & file name
             return $fullFile_l;
         } else {
             $image_l->save($fullFile_l);
+            //return full path & file name
             return $fullFile_l;
         }
     }
     
     /**
+     *
+     * function to crop image in small format: 200px
+     *
      * @param file      $file
      * @param string    $extension
      * @param string    $file_name_rand
@@ -158,7 +166,7 @@ class ImageHandler {
         $path_s                 = "answer_images/".$username."/".$today."/";
         $fullFile_s             = $path_s . $filenameAndExtension_s;
 
-        ///////////////////////////////
+        ////////////////////// recreate path & filename of large image to copy from
         $filename_l             = $file_name_rand.'_large';
         $filenameAndExtension_l = $filename_l . "." . $extension;
         $fullFile_l             = $path_s. $filenameAndExtension_l;
@@ -172,16 +180,18 @@ class ImageHandler {
         $height     = $img->get_height();
         $h          = 200;
 
+        // if image height is larger than 200px crop otherwise not
         if($height > $h) {
             $image_s->fit_to_height($h);
             $image_s->save($fullFile_s);
+            //return full path & file name
             return $fullFile_s;
         } else {
             $image_s->save($fullFile_s);
+            //return full path & file name
             return $fullFile_s;
         }
-    }
-    
+    } 
 }
 
 /**

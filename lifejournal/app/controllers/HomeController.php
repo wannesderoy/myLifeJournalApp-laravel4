@@ -27,64 +27,22 @@ class HomeController extends BaseController {
 						$size = Input::file('answer_image')->getSize();
 						if($size < 50000000) {
 							// The same for both images
-							$today 		= date("z");
-							$file 		= Input::file('answer_image');
-							$extension 	= $file->getClientOriginalExtension();
-							$username 	= User::SlugName();
-							$rand_file 	= Str::lower(Str::random(20, 'numeric'));
+							$file 				= Input::file('answer_image');
+							$extension 			= $file->getClientOriginalExtension();
+							$file_name_rand 	= Str::lower(Str::random(20, 'numeric'));
 
-							///////////////////// Large image ----------------------------------
-							$filename_l 			= $rand_file.'_large';
-							$filenameAndExtension_l = $filename_l . "." . $extension;
-							$path_l					= "answer_images/".$username."/".$today."/";
-							$fullFile_l 			= $path_l. $filenameAndExtension_l;
+							// init the ImageHandler class and call image_ functions with right params
+							$large_image_name = ImageHandler::image_large($file,$extension,$file_name_rand);
+							$small_image_name = ImageHandler::image_small($file,$extension,$file_name_rand);
 
-							// move large(original) file to location
-							$fileMove_l 			= $file->move($path_l, $filenameAndExtension_l);
-
-							// Crop image to $700 px width
-							$image_l 	= new SimpleImage();
-							$img 		= $image_l->load($fullFile_l);
-							$width 		= $img->get_width();
-							$w 			= 700;
-
-							if($width > $w) {
-								$image_l->fit_to_width($w);
-								$image_l->save($fullFile_l);
-							} else {
-								$image_l->save($fullFile_l);
-							}
-
-							///////////////////// Small image ----------------------------------
-							$filename_s 			= $rand_file.'_small';
-							$filenameAndExtension_s = $filename_s . "." . $extension;
-							$path_s 				= "answer_images/".$username."/".$today."/";
-							$fullFile_s 			= $path_s . $filenameAndExtension_s;
-
-							// Copy large image to small image
-							File::copy($fullFile_l,$fullFile_s);
-
-							// Crop small image to 200px height
-							$image_s 	= new SimpleImage();
-							$img 		= $image_s->load($fullFile_s);
-							$height 	= $img->get_height();
-							$h 			= 200;
-
-							if($height > $h) {
-								$image_s->fit_to_height($h);
-								$image_s->save($fullFile_s);
-							} else {
-								$image_s->save($fullFile_s);
-							}
-							
 							// Input in db
 							$answer = Answer::create(array(
 									'answer'		=> Input::get('answer'),
 									'year'			=> date("Y"),
 									'user_id'		=> Auth::user()->id,
 									'question_id'	=> '999',
-									'image_s'		=> $fullFile_s,
-									'image_l'		=> $fullFile_l,
+									'image_s'		=> $small_image_name,
+									'image_l'		=> $large_image_name,
 									'image_name'	=> $rand_file
 								)
 							);
@@ -121,56 +79,15 @@ class HomeController extends BaseController {
 					if (Input::hasFile('answer_image')) {
 						$size = Input::file('answer_image')->getSize();
 						if($size < 50000000) {
+
 							// The same for both images
-							$today 		= date("z");
-							$file 		= Input::file('answer_image');
-							$extension 	= $file->getClientOriginalExtension();
-							$username 	= User::SlugName();
-							$rand_file 	= Str::lower(Str::random(20, 'numeric'));
+							$file 				= Input::file('answer_image');
+							$extension 			= $file->getClientOriginalExtension();
+							$file_name_rand 	= Str::lower(Str::random(20, 'numeric'));
 
-							///////////////////// Large image ----------------------------------
-							$filename_l 			= $rand_file.'_large';
-							$filenameAndExtension_l = $filename_l . "." . $extension;
-							$path_l					= "answer_images/".$username."/".$today."/";
-							$fullFile_l 			= $path_l. $filenameAndExtension_l;
-
-							// move large(original) file to location
-							$fileMove_l 			= $file->move($path_l, $filenameAndExtension_l);
-
-							// Crop image to $700 px width
-							$image_l 	= new SimpleImage();
-							$img 		= $image_l->load($fullFile_l);
-							$width 		= $img->get_width();
-							$w 			= 700;
-
-							if($width > $w) {
-								$image_l->fit_to_width($w);
-								$image_l->save($fullFile_l);
-							} else {
-								$image_l->save($fullFile_l);
-							}
-
-							///////////////////// Small image ----------------------------------
-							$filename_s 			= $rand_file.'_small';
-							$filenameAndExtension_s = $filename_s . "." . $extension;
-							$path_s 				= "answer_images/".$username."/".$today."/";
-							$fullFile_s 			= $path_s . $filenameAndExtension_s;
-
-							// Copy large image to small image
-							File::copy($fullFile_l,$fullFile_s);
-
-							// Crop small image to 200px height
-							$image_s 	= new SimpleImage();
-							$img 		= $image_s->load($fullFile_s);
-							$height 	= $img->get_height();
-							$h 			= 200;
-
-							if($height > $h) {
-								$image_s->fit_to_height($h);
-								$image_s->save($fullFile_s);
-							} else {
-								$image_s->save($fullFile_s);
-							}
+							// init the ImageHandler class and call image_ functions with right params
+							$large_image_name = ImageHandler::image_large($file,$extension,$file_name_rand);
+							$small_image_name = ImageHandler::image_small($file,$extension,$file_name_rand);
 
 							// Input in db
 							$answer = Answer::create(array(
@@ -178,9 +95,9 @@ class HomeController extends BaseController {
 									'year'			=> date("Y"),
 									'user_id'		=> Auth::user()->id,
 									'question_id'	=> date("z")+1,
-									'image_s'		=> $fullFile_s,
-									'image_l'		=> $fullFile_l,
-									'image_name'	=> $rand_file
+									'image_s'		=> $small_image_name,
+									'image_l'		=> $large_image_name,
+									'image_name'	=> $file_name_rand
 								)
 							);
 							if($answer) {
