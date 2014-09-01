@@ -1,4 +1,7 @@
 <?php
+// migration route
+Route::get('app/dbmigrate', 'DbmigrateController@index');
+
 // website route
 Route::get('/', array(
 	'as' 	=> 'web-home',
