@@ -71,7 +71,7 @@
 					<label for="profilepicture">
 						<img src="../images/image_icon.png" alt="image_icon" width="80"/>
 					</label>
-					<input type="file" id="profilepicture" name="profilepicture">
+					<input type="file" name="profilepicture">
 				</div>
 			</li>
 			<br>
@@ -97,6 +97,33 @@
 	{{ Form::close() }}	
 </div>
 <script>
+ $(function() {
+ 	// trigger file input field on click on img icon
+ 	$('#profilepicture img').click(function() {
+ 		$('input:file').click();
+ 	});
+ 	// on img sumbit, add green circle class around img
+    $("input:file").change(function(){
+		$('#profilepicture img').addClass('image-selected');
+ 	});
+
+
+    var a = "{{ User::Notifications() }}"
+
+    if(a == 'false') {
+    	$('#myonoffswitch').click();
+    	/*
+		$('#myonoffswitch').change(function() {
+			console.log("YES");
+		});
+ 		*/		
+	} else {
+		var c = 1;
+		$('#myonoffswitch').change(function() {
+			console.log("YES");
+		});
+	}
+  });
  	// grant or resist permission for notifications via button
  	/*
 	var dnperm = document.getElementById('notifications');
@@ -117,4 +144,5 @@
 	});
 */
 </script>
+
 @stop

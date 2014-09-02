@@ -61,23 +61,26 @@ class settingsController extends BaseController {
 				
 				// profile picture
 				if (Input::hasFile('profilepicture')) {
-					$size = Input::file('profilepicture')->getSize();
-					if($size < 5000000000000) {
+					$file = Input::file('profilepicture');
+					$size = $file->getSize();
+					if($file->isValid()) {
+						if($size < 5000000) {
 
-						$file 					= Input::file('profilepicture');
+							$profilepicture_image 	= ImageHandler::profile_picture($file);
+							
+							$u->profile_pic 		= $profilepicture_image;
 
-						$profilepicture_image 	= ImageHandler::profile_picture($file);
-						
-						$u->profile_pic 		= $profilepicture_image;
-
+						} else {
+							return Redirect::route('settings')->with('global', 'You image is too big and has not been uploaded. Max allowed is 500kb -> yours = '.$size.'.');		
+						}
 					} else {
-						return Redirect::route('settings')->with('global', 'you profile picture is too big and has not been uploaded. Max allowed is 500kb -> yours = '.$size.'.');		
+						return Redirect::route('settings')->with('global', 'Your image is not a valid image.');
 					}
 				}
 				if($u->save()) {
 					return Redirect::route('settings')->with('global', 'you profile has been updated.');
 				} else {
-					return Redirect::route('settings')->with('global', 'you profile has NOT been updated.');
+					return Redirect::route('settings')->with('global', 'you profile has not been updated.');
 				}
 			}
 		}

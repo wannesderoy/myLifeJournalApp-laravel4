@@ -15,7 +15,7 @@ if (b == 'false') {
 	// If notifications are true (on)
 	if(a == 'true')
 		console.log('3');
-		// Call browser notification at end of the day when notifications is on and answer is
+		// Call browser notification at end of the day when notifications is true on and answer is falses
 		var now = new Date();
 		var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 14, 22, 0, 0) - now;
 

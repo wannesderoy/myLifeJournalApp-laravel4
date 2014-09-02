@@ -87,9 +87,11 @@
 				$('#messages').slideUp('slow');
 			}, 7000);
 		}
+		$("input:file").change(function (){
+       		$('#take_photo img').addClass('image-selected');
+     	});
 	});
 	</script>
-	@include('layout.notifications')
 	@else
 		@include('layout.start')
 	@endif	

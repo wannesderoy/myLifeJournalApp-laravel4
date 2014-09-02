@@ -99,7 +99,8 @@ Class accountController extends BaseController {
 						'email' 		=> $email,
 						'birthday' 		=> $birthday,
 						'password' 		=> $password,
-						'profile_pic' 	=> 'profile_pictures/default/default_profile_picture.jpg'
+						'profile_pic' 	=> 'profile_pictures/default/default_profile_picture.jpg',
+						'settings_all'	=> 1
 					)
 				);
 				// check if user is created correctly

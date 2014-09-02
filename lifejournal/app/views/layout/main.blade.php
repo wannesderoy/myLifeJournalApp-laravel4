@@ -29,5 +29,6 @@
 	@endif
 	@yield('content')
 	{{ HTML::script('js/main.js') }}
+	@include('layout.notifications')
 </body>
 </html>

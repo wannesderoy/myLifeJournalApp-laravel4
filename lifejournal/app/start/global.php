@@ -112,10 +112,11 @@ class ImageHandler {
      * @return $large_image_name 
      *
      */
-    public static function answer_image_large($file,$extension,$file_name_rand) {
+    public static function answer_image_large($file,$file_name_rand) {
         $username   = User::SlugName();
         $today      = date("z");
 
+        $extension              = $file->getClientOriginalExtension();
         $filename_l             = $file_name_rand.'_large';
         $filenameAndExtension_l = $filename_l . "." . $extension;
         $path_l                 = "answer_images/".$username."/".$today."/";
@@ -154,11 +155,12 @@ class ImageHandler {
      * @return string   $small_image_name 
      *
      */
-    public static function answer_image_small($file,$extension,$file_name_rand) {
+    public static function answer_image_small($file,$file_name_rand) {
         $username   = User::SlugName();
         $today      = date("z");
 
         ///////////////////// Small image ----------------------------------
+        $extension              = $file->getClientOriginalExtension();
         $filename_s             = $file_name_rand.'_small';
         $filenameAndExtension_s = $filename_s . "." . $extension;
         $path_s                 = "answer_images/".$username."/".$today."/";
