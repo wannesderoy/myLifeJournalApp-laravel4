@@ -18,7 +18,8 @@ class HomeController extends BaseController {
 			if ($v->fails()) {
 				return Redirect::route('home')
 					->withErrors($v)
-					->withInput();
+					->withInput()
+					->with('global', "There was a problem with the input, please try again.");
 			} else {
 				// if it's the users birthday
 				if(User::UserBirthdate() == date('m-d')) {
@@ -32,8 +33,8 @@ class HomeController extends BaseController {
 							$file_name_rand 	= Str::lower(Str::random(20, 'numeric'));
 
 							// init the ImageHandler class and call image_ functions with right params
-							$large_image_name = ImageHandler::image_large($file,$extension,$file_name_rand);
-							$small_image_name = ImageHandler::image_small($file,$extension,$file_name_rand);
+							$large_image_name = ImageHandler::answer_image_large($file,$extension,$file_name_rand);
+							$small_image_name = ImageHandler::answer_image_small($file,$extension,$file_name_rand);
 
 							// Input in db
 							$answer = Answer::create(array(

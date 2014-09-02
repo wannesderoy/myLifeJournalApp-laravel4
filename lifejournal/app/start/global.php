@@ -110,10 +110,9 @@ class ImageHandler {
      * @param string    $file_name_rand
      *
      * @return $large_image_name 
-     * @throws Exeption -> redirect to home with global
      *
      */
-    public static function image_large($file,$extension,$file_name_rand) {
+    public static function answer_image_large($file,$extension,$file_name_rand) {
         $username   = User::SlugName();
         $today      = date("z");
 
@@ -153,10 +152,9 @@ class ImageHandler {
      * @param string    $file_name_rand
      *
      * @return string   $small_image_name 
-     * @throws Exeption -> redirect to home with global
      *
      */
-    public static function image_small($file,$extension,$file_name_rand) {
+    public static function answer_image_small($file,$extension,$file_name_rand) {
         $username   = User::SlugName();
         $today      = date("z");
 
@@ -191,7 +189,33 @@ class ImageHandler {
             //return full path & file name
             return $fullFile_s;
         }
-    } 
+    }
+    /**
+     *
+     * function to create thumbnail in profile picture format: 80px x 80px
+     *
+     * @param file      $file
+     *
+     * @return string   $small_image_name 
+     *
+     */
+    public static function profile_picture($file) {
+        $path                   = "profile_pictures/" . User::SlugName()."/";
+        $filename               = Str::lower(Str::random(20, 'numeric'));       
+        $extension              = Input::file('profilepicture')->getClientOriginalExtension();
+        $filenameAndExtension   = $filename.'.'.$extension;
+        $fullFile               = $path.$filenameAndExtension;
+        $fileMove               = $file->move($path, $filenameAndExtension);
+        
+        $image  = new SimpleImage();
+        $img    = $image->load($fullFile);
+        $wh     = 80;
+        
+        $image->thumbnail($wh,$wh);
+        $image->save($fullFile);
+        
+        return $fullFile;
+    }
 }
 
 /**

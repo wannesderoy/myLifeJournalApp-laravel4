@@ -63,29 +63,13 @@ class settingsController extends BaseController {
 				if (Input::hasFile('profilepicture')) {
 					$size = Input::file('profilepicture')->getSize();
 					if($size < 5000000000000) {
-						$extension 				= Input::file('profilepicture')->getClientOriginalExtension();
-						$path 					= "profile_pictures/" . User::SlugName()."/";
-						$filename 				= Str::lower(Str::random(20, 'numeric'));		
-						$filenameAndExtension 	= $filename . "." . $extension;	
-						$fullFile 				= $path . $filenameAndExtension;
-						$fileMove 				= Input::file('profilepicture')->move($path, $filenameAndExtension);
-						$u->profile_pic 		= $fullFile;
 
-						$im 		= new ImageManipulator($fullFile);
-						$centreX 	= round($im->getWidth() / 2);
-						$centreY 	= round($im->getHeight() / 2);
+						$file 					= Input::file('profilepicture');
 
-						$s 	= 100;
-						$x1 = $centreX - $s;
-						$y1 = $centreY - $s;
-
-						$x2 = $centreX + $s;
-						$y2 = $centreY + $s;
-
-						$im->crop($x1, $y1, $x2, $y2);
-
-						$im->save($fullFile);
+						$profilepicture_image 	= ImageHandler::profile_picture($file);
 						
+						$u->profile_pic 		= $profilepicture_image;
+
 					} else {
 						return Redirect::route('settings')->with('global', 'you profile picture is too big and has not been uploaded. Max allowed is 500kb -> yours = '.$size.'.');		
 					}

@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-<div id="wrapper">
+<div class="wrapper">
 	<div id="start-title">
 		<p>
 			<strong>Terms of Use</strong>
